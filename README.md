@@ -42,5 +42,9 @@ npm run dev
 - Material UI
 - React Leaflet
 
+## Screenshots
+
+![Screenshot 2023-12-17 014322](https://github.com/smitjiwani/GIS-farm-planner/assets/78549024/6093d03d-e9eb-4586-847a-f9bcdb838e7c)
+
 
 

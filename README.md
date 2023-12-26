@@ -40,9 +40,9 @@ docker-compose exec server npm run migrate
 docker-compose exec server npm run seed
 ```
 
-you will be able to see the backend at `http://localhost:3000/`
+you will be able to see the backend at `http://localhost:5000/`
 
-`http://localhost:3000/farms` will show a sample farms entries
+`http://localhost:5000/farms` will show a sample farms entries
 
 
 use the following command to create a migrate file

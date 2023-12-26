@@ -15,22 +15,34 @@ This is a GIS based farm planner application that allows users to create a farm 
 
 Node version 20.4.0
 
-### Steps
+### Setup
 
-1. Clone the repository
+Clone the repository
 
 ```
 git clone https://github.com/smitjiwani/GIS-farm-planner.git
 ```
 
-2. Install dependencies
+#### Frontend
 
 ```
 npm install
 npm run dev
 ```
 
-4. Open `http://localhost:3000` in your browser
+you will be able to see the frontend at `http://localhost:5173/`
+
+#### Backend
+
+```
+docker-compose up -d --build
+docker-compose exec server npm run migrate
+docker-compose exec server npm run seed
+```
+
+you will be able to see the backend at `http://localhost:3000/`
+
+`localhost:3000/farms will show a sample farms entries`
 
 ## Features
 

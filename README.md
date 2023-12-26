@@ -42,7 +42,22 @@ docker-compose exec server npm run seed
 
 you will be able to see the backend at `http://localhost:3000/`
 
-`localhost:3000/farms will show a sample farms entries`
+`http://localhost:3000/farms` will show a sample farms entries
+
+
+use the following command to create a migrate file
+
+```
+knex migrate:make <table_name> --migrations-directory db/migration
+```
+
+use the following command to create a seed file(improvement needed here)
+
+```
+cd .\server\db\seeds\
+knex seed:make <add_example>
+```
+
 
 ## Features
 

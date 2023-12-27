@@ -3,22 +3,36 @@ import db from '../db.js';
 ;(async () => {
   try {
     await db('farms').insert ({
-      name: 'Farm 1',
-      location: 'Location 1',
-      produce: 'Produce 1',
-      contact: 'Contact 1',
-      website: 'Website 1',
-      img: 'Image 1',
+      SiteInfor: 'New York',
+      Country: 'USA',
+      Latitude: 40.71,
+      Longitude: -74.01,
+      Elevation: 3.5,
+      MAT: 'NA' ,
+      MAP: 'NA',
+      ClimateType: 'NA',
+      SamplingDepth: 'NA',
+      SamplingThickness: 'NA',
+      SandPerc: 'NA',
+      SiltPerc: 'NA',
+      ClayPerc: 'NA',
+      Texture: 'NA',
+      SoilpH: 'NA',
+      CoverCrop: 'White_clover',
+      CoverCropGroup: 'Legume',
+      GrainCrop: 'Bean/Beet/Corn/Bean',
+      GrainCropGroup: 'MTT',
+      Tillage_C: 'NA',
+      Tillage_T: 'NA',
+      Fertilization_C: 'NA',
+      Fertilization_T: 'NA',
+      Conservation_Type: 'CC',
+      ControlDescription: 'Fallow',
+      Yield_C: 'NA',
+      Yield_T: 'NA',
+      Weed_C: 'NA',
+      Weed_T: 'NA',
     })
-    await db('farms').insert ({
-      name: 'Farm 2',
-      location: 'Location 2',
-      produce: 'Produce 2',
-      contact: 'Contact 2',
-      website: 'Website 2',
-      img: 'Image 2',
-    })
-
     console.log('Added sample farms!')
     process.exit(0)
   } catch (err) {

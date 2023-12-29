@@ -31,3 +31,5 @@
 |**Weed\_C**|Weed of Control (Mean value) - Units varied: kg per ha||
 |**Weed\_T**|Weed of treatment (Mean value) - Units varied: kg per ha||
 
+The following columns were removed since they had alot of empty entries: 'ClimateType', 'ClayPerc', 'Tillage_C', 'Tillage_T', 'Weed_C', 'Weed_T'
+The entries from following columns were removed to make the number of complete rows even among all the entries: Latitude, SiteInfor, GrainCropGroup, Elevation, GrainCrop, CoverCropGroup, CoverCrop, ControlDescription

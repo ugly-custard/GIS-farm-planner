@@ -13,7 +13,7 @@ const indiaCenter = [20.5937, 78.9629]; // Center coordinates of India
 const Map = () => {
     const [showMarker, setShowMarker] = useState(true);
 
-    const [farms, setFarms] = useState({})
+    const [farms, setFarms] = useState([])
 
     const handleToggleMarker = () => {
         setShowMarker(!showMarker);
@@ -27,31 +27,31 @@ const Map = () => {
     const getFarms = async () => {
         const farmData = await fetch(`http://localhost:5000/farms`).then(res => res.json())
         // console(farmData)
-        setFarms(farmData[0])
+        setFarms(farmData)
     }
 
     const _onCreated = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        // console.log("Latitude: ",e.layer._latlng.lat)
+        // console.log("Longitude: ",e.layer._latlng.lng)
     }
 
     const _onEdited = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        // console.log("Latitude: ",e.layer._latlng.lat)
+        // console.log("Longitude: ",e.layer._latlng.lng)
     }
 
     const _onDeleted = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        // console.log("Latitude: ",e.layer._latlng.lat)
+        // console.log("Longitude: ",e.layer._latlng.lng)
     }
 
 
     return (
         <div className='Map__main'>
-            <div className="map" style={{height: '100vh', width: '100vw'}}>
+            <div className="map" style={{ height: '100vh', width: '100vw' }}>
                 <MapContainer center={indiaCenter} zoom={5} style={{ height: '100vh', width: '100vw' }}>
 
                     <FeatureGroup>
@@ -86,7 +86,7 @@ const Map = () => {
                         </Marker>
                     )}
 
-                    {Object.keys(farms).map((farm) => {
+                    {/* {Object.keys(farms).map((farm) => {
                         return (
                             <Circle
                                 key={farm}
@@ -94,6 +94,20 @@ const Map = () => {
                                 pathOptions={{ color: 'red' }}
                                 radius={200}>
                                 <Tooltip>Cover Crop: {farms["CoverCrop"]} | Cover Crop Group: {farms["CoverCropGroup"]} | Grain Crop: {farms["GrainCrop"]} | Grain Crop Group: {farms["GrainCropGroup"]}</Tooltip>
+                            </Circle>
+                        )
+                    })} */}
+
+                    {/* Had to do this to map the array, Before the endpoint was returning an object and now it returns an array */}
+                    {farms.map((farm) => {
+                        // console.log(farm)
+                        return (
+                            <Circle
+                                key={farm["id"]}
+                                center={[farm["latitude"], farm["longitude"]]}
+                                pathOptions={{ color: 'red' }}
+                                radius={200}>
+                                <Tooltip>Cover Crop: {farm["CoverCrop"]} | Cover Crop Group: {farm["CoverCropGroup"]} | Grain Crop: {farm["GrainCrop"]} | Grain Crop Group: {farm["GrainCropGroup"]}</Tooltip>
                             </Circle>
                         )
                     })}

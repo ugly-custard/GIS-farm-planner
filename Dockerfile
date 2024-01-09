@@ -8,6 +8,6 @@ COPY . .
 
 RUN npm install
 
-RUN xargs apt-get -y install < requirements.txt
+# RUN xargs apt-get -y install < requirements.txt
 
 CMD [ "node", "server/server.js" ]

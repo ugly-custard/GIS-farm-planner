@@ -32,27 +32,27 @@ const Map = () => {
 
     const _onCreated = e => {
         console.log(e)
-        // console.log("Latitude: ",e.layer._latlng.lat)
-        // console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ",e.layer._latlng.lat)
+        console.log("Longitude: ",e.layer._latlng.lng)
     }
 
     const _onEdited = e => {
         console.log(e)
-        // console.log("Latitude: ",e.layer._latlng.lat)
-        // console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ",e.layer._latlng.lat)
+        console.log("Longitude: ",e.layer._latlng.lng)
     }
 
     const _onDeleted = e => {
         console.log(e)
-        // console.log("Latitude: ",e.layer._latlng.lat)
-        // console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ",e.layer._latlng.lat)
+        console.log("Longitude: ",e.layer._latlng.lng)
     }
 
 
     return (
         <div className='Map__main'>
-            <div className="map" style={{ height: '100vh', width: '100vw' }}>
-                <MapContainer center={indiaCenter} zoom={5} style={{ height: '100vh', width: '100vw' }}>
+            <div className="map" style={{height: '100vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
+                <MapContainer center={indiaCenter} zoom={5} style={{ height: '50rem', width: '90rem' }}>
 
                     <FeatureGroup>
                         <EditControl
@@ -75,7 +75,7 @@ const Map = () => {
                     />
 
                     {/* Conditional Marker and Popup for India */}
-                    {showMarker && (
+                    {/* {showMarker && (
                         <Marker position={indiaCenter}>
                             <Popup>
                                 <div>
@@ -84,7 +84,7 @@ const Map = () => {
                                 </div>
                             </Popup>
                         </Marker>
-                    )}
+                    )} */}
 
                     {/* {Object.keys(farms).map((farm) => {
                         return (
@@ -102,22 +102,21 @@ const Map = () => {
                     {farms.map((farm) => {
                         // console.log(farm)
                         return (
-                            <Circle
+                            <Marker
                                 key={farm["id"]}
-                                center={[farm["latitude"], farm["longitude"]]}
-                                pathOptions={{ color: 'red' }}
-                                radius={200}>
-                                <Tooltip>Cover Crop: {farm["CoverCrop"]} | Cover Crop Group: {farm["CoverCropGroup"]} | Grain Crop: {farm["GrainCrop"]} | Grain Crop Group: {farm["GrainCropGroup"]}</Tooltip>
-                            </Circle>
+                                position={[farm["latitude"], farm["longitude"]]}
+                                >
+                                <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
+                            </Marker>
                         )
                     })}
 
 
                 </MapContainer >
             </div>
-            <button onClick={handleToggleMarker}>
+            {/* <button onClick={handleToggleMarker}>
                 {showMarker ? 'Hide Marker' : 'Show Marker'}
-            </button>
+            </button> */}
         </div>
     );
 };

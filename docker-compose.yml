@@ -9,8 +9,8 @@ services:
   db:
     image: 'postgres'
     container_name: 'db'
-    # ports:
-    #   - 4321:5432
+    ports:
+      - 4321:5432
     environment:
       POSTGRES_PASSWORD: "password"
       POSTGRES_USER: 'username'

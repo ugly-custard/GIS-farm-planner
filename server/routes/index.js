@@ -17,4 +17,45 @@ router.get("/farms", (req, res) => {
         })
 })
 
+router.post("/getnearestpoints", async (req, res) => {
+    try {
+
+        const { Lat, Long } = req.body;
+        const farms = await db.select().from("farms")
+        // console.log(farms)
+
+        const nearestPoints = [];
+        let numberofPoints = 3;
+        for (let i = 0; i < numberofPoints; i++) {
+            nearestPoints.push(
+                {
+                    id: null,
+                    Dist: null
+                }
+            )
+        }
+
+        for (let farm of farms) {
+            let Latf = farm["latitude"], Longf = farm["longitude"];
+
+            const Distf = Math.sqrt((Lat-Latf)*(Lat-Latf) + (Long-Longf)*(Long-Longf));
+            for (let point of nearestPoints) {
+                if (point.id == null || point.Dist > Distf) {
+                    point.id = farm["id"]
+                    point.Dist = Distf
+                    break;
+                }
+            }
+        }
+
+        // console.log(nearestPoints)
+        res.status(200).json(nearestPoints)
+    }
+    catch(error){
+        console.log(error.message)
+        res.status(500).json({error: "Internal Server Error"})
+    }
+
+})
+
 export default router

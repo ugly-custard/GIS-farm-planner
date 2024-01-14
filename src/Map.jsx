@@ -11,12 +11,12 @@ import { EditControl } from 'react-leaflet-draw';
 const indiaCenter = [20.5937, 78.9629]; // Center coordinates of India
 
 const Map = () => {
-    const [showMarker, setShowMarker] = useState(true);
+    const [showMap, setShowMap] = useState(true);
 
     const [farms, setFarms] = useState([])
 
-    const handleToggleMarker = () => {
-        setShowMarker(!showMarker);
+    const handleToggleMap = () => {
+        setShowMap(!showMap);
     };
 
     useEffect(() => {
@@ -51,8 +51,10 @@ const Map = () => {
 
     return (
         <div className='Map__main'>
-            <div className="map" style={{height: '100vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-                <MapContainer center={indiaCenter} zoom={5} style={{ height: '50rem', width: '90rem' }}>
+            <div className="map" style={{ display: 'flex',flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh'}} >
+                {showMap && 
+                
+                <MapContainer center={indiaCenter} zoom={5} style={{ height: '50vh', width: '50vw' }}>
 
                     <FeatureGroup>
                         <EditControl
@@ -113,10 +115,11 @@ const Map = () => {
 
 
                 </MapContainer >
+                }
             </div>
-            {/* <button onClick={handleToggleMarker}>
-                {showMarker ? 'Hide Marker' : 'Show Marker'}
-            </button> */}
+            <button onClick={handleToggleMap}>
+                {showMap ? 'Hide Map' : 'Show Map'}
+            </button>
         </div>
     );
 };

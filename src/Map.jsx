@@ -15,6 +15,7 @@ const indiaCenter = [20.5937, 78.9629]; // Center coordinates of India
 
 const Map = () => {
     const [showMap, setShowMap] = useState(true);
+
     const [showMarker, setShowMarker] = useState(true);
     const [latitude, setLatitude] = useState(20.5937); // [latitude, longitude]
     const [longitude, setLongitude] = useState(78.9629); // [latitude, longitude]
@@ -40,20 +41,23 @@ const Map = () => {
 
     const _onCreated = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ", e.layer._latlng.lat)
+        console.log("Longitude: ", e.layer._latlng.lng)
+        setCoordinates([e.layer._latlng.lat, e.layer._latlng.lng])
     }
 
     const _onEdited = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ", e.layer._latlng.lat)
+        console.log("Longitude: ", e.layer._latlng.lng)
+        setCoordinates([e.layer._latlng.lat, e.layer._latlng.lng])
     }
 
     const _onDeleted = e => {
         console.log(e)
-        console.log("Latitude: ",e.layer._latlng.lat)
-        console.log("Longitude: ",e.layer._latlng.lng)
+        console.log("Latitude: ", e.layer._latlng.lat)
+        console.log("Longitude: ", e.layer._latlng.lng)
+        setCoordinates([e.layer._latlng.lat, e.layer._latlng.lng])
     }
 
     const HandleCoordinates = () => {
@@ -61,51 +65,64 @@ const Map = () => {
             setCoordinates([latitude, longitude])
     }
 
+    const handleLocations = async () => {
+        console.log(typeof (coordinates[0]))
+        const res = await fetch(`http://localhost:5000/getnearestpoints`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Lat: coordinates[0], Long: coordinates[1] }),
+        })
+        const data = await res.json()
+        setFarms(data)
+    }
+
 
     useEffect(() => {
         console.log(coordinates)
         console.log(farms)
-    }, [coordinates])
+    }, [farms])
 
     return (
         <div className='Map__main'>
-            <div className="map" style={{ display: 'flex',flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh'}} >
-                {showMap && 
-                
+            <div className="map" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh' }} >
+                {showMap &&
+
                     <MapContainer key={coordinates.toString()} center={coordinates} zoom={5} style={{ height: '50vh', width: '50vw' }}>
 
-                    <FeatureGroup>
-                        <EditControl
-                            position='topright'
-                            onCreated={_onCreated}
-                            onEdited={_onEdited}
-                            onDeleted={_onDeleted}
-                            draw={{
-                                rectangle: false,
-                                polyline: false,
-                                circlemarker: false,
-                                marker: false
-                            }}
+                        <FeatureGroup>
+                            <EditControl
+                                position='topright'
+                                onCreated={_onCreated}
+                                onEdited={_onEdited}
+                                onDeleted={_onDeleted}
+                                draw={{
+                                    rectangle: false,
+                                    polyline: false,
+                                    circlemarker: false,
+                                    marker: false
+                                }}
+                            />
+                        </FeatureGroup>
+
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         />
-                    </FeatureGroup>
 
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-
-                    {/* Conditional Marker and Popup for India */}
-                        {showMarker && (
+                        {/* Conditional Marker and Popup for India */}
+                        {/* {showMarker && (
                             <Marker position={coordinates}>
-                            <Popup>
-                                    {/* add location name based on coordinates in h2 and coordinates in p */}
+                                <Popup>
+                                    add location name based on coordinates in h2 and coordinates in p
                                     <h2></h2>
                                     <p>Latitude: {coordinates[0]}, longitude: {coordinates[1]}</p>
-                            </Popup>
-                        </Marker>
-                        )}
+                                </Popup>
+                            </Marker>
+                        )} */}
 
-                    {/* {Object.keys(farms).map((farm) => {
+                        {/* {Object.keys(farms).map((farm) => {
                         return (
                             <Circle
                                 key={farm}
@@ -117,21 +134,23 @@ const Map = () => {
                         )
                     })} */}
 
-                    {/* Had to do this to map the array, Before the endpoint was returning an object and now it returns an array */}
-                    {/* {farms.map((farm) => {
-                        console.log(farm)
-                        return (
-                            <Marker
-                                key={farm["id"]}
-                                position={[farm["latitude"], farm["longitude"]]}
+                        {/* Had to do this to map the array, Before the endpoint was returning an object and now it returns an array */}
+                        {farms.length != 0 && farms.map((farm) => {
+                            console.log(farm["latitude"])
+                            return (
+                                <Marker
+                                    key={farm["id"]}
+                                    position={[farm["latitude"], farm["longitude"]]}
+                                    pathOptions={{ color: 'red' }}
+
                                 >
-                                <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
-                            </Marker>
-                        )
-                    })} */}
+                                    <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
+                                </Marker>
+                            )
+                        })}
 
 
-                </MapContainer >
+                    </MapContainer >
                 }
             </div>
             <button onClick={handleToggleMap}>
@@ -147,7 +166,10 @@ const Map = () => {
             <button onClick={HandleCoordinates}>
                 click me
             </button>
-        </div>
+            <button onClick={handleLocations}>
+                Get Nearest Points
+            </button>
+        </div >
     );
 };
 

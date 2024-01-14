@@ -21,6 +21,7 @@ router.post("/getnearestpoints", async (req, res) => {
     try {
 
         const { Lat, Long } = req.body;
+        console.log(typeof(Lat))
         const farms = await db.select().from("farms")
         // console.log(farms)
 
@@ -48,8 +49,17 @@ router.post("/getnearestpoints", async (req, res) => {
             }
         }
 
+        let data = []
+
+        for(let point of nearestPoints){
+            for(let farm of farms){
+                if(farm["id"] == point.id)
+                    data.push(farm);
+            }
+        }
+
         // console.log(nearestPoints)
-        res.status(200).json(nearestPoints)
+        res.status(200).json(data)
     }
     catch(error){
         console.log(error.message)

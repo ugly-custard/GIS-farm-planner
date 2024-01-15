@@ -4,8 +4,6 @@ import axios from 'axios';
 const PriceFluctuation = () => {
     const [data, setData] = useState(null);
 
-    //need fao and cgi / graphs could also be made
-
     useEffect(() => {
         const fetchData = async () => {
             try {

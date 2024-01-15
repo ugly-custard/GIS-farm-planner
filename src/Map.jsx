@@ -154,12 +154,10 @@ const Map = () => {
                             </Marker>
                         )
                     })}
-
-
                 </MapContainer >
-            </div>
 
-            <div className="tooltip-content">
+                <div className="content">
+                    <h1>info</h1>
                 {/* Tooltip content */}
                 {farms.length != 0 && farms.map((farm) => {
                     return (
@@ -172,6 +170,9 @@ const Map = () => {
                     )
                 })}
             </div>
+            </div>
+
+            
 
             <button onClick={() => setShowMarker(!showMarker)}>
                 {showMarker ? 'Hide Marker' : 'Show Marker'}

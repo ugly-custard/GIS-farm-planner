@@ -68,4 +68,15 @@ router.post("/getnearestpoints", async (req, res) => {
 
 })
 
+router.get("/getPriceIndex", async (req, res) => {
+        db.select().from("wholesale_price_indices")
+        .then((price_index) => {
+            res.json(price_index)
+        })
+        .catch((error) => {
+            res.status(500).json({ error: error.message })
+        })
+    }
+)
+    
 export default router

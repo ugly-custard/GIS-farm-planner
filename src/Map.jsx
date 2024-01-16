@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import "leaflet-draw/dist/leaflet.draw.css"
 import { EditControl } from 'react-leaflet-draw';
 import axios from 'axios';
+import PriceIndexChart from './Chart';
 
 //note: lets not map farms everytime we render the map, lets just map the farms once and then update the map when we add a new farm
 //or another approach could be that we get the farms using lattitude and longitude and then map the farms
@@ -15,7 +16,7 @@ const indiaCenter = [20.5937, 78.9629]; // Center coordinates of India
 
 const Map = () => {
     const [showMarker, setShowMarker] = useState(false);
-    const [locationInput, setLocationInput] = useState(''); 
+    const [locationInput, setLocationInput] = useState('');
     const [latitude, setLatitude] = useState(20.5937); // [latitude, longitude]
     const [longitude, setLongitude] = useState(78.9629); // [latitude, longitude]
     const [coordinates, setCoordinates] = useState([latitude, longitude]); // [latitude, longitude]
@@ -158,21 +159,25 @@ const Map = () => {
 
                 <div className="content">
                     <h1>info</h1>
-                {/* Tooltip content */}
-                {farms.length != 0 && farms.map((farm) => {
-                    return (
-                        <div key={farm["id"]} className="tooltip-item">
-                            <p>Cover Crop: {farm["covercrop"]}</p>
-                            <p>Cover Crop Group: {farm["covercropgroup"]}</p>
-                            <p>Grain Crop: {farm["graincrop"]}</p>
-                            <p>Grain Crop Group: {farm["graincropgroup"]}</p>
-                        </div>
-                    )
-                })}
+                    {/* Tooltip content */}
+                    {farms.length != 0 && farms.map((farm) => {
+                        return (
+                            <div key={farm["id"]} className="tooltip-item">
+                                <p>Cover Crop: {farm["covercrop"]}</p>
+                                <p>Cover Crop Group: {farm["covercropgroup"]}</p>
+                                <p>Grain Crop: {farm["graincrop"]}</p>
+                                <p>Grain Crop Group: {farm["graincropgroup"]}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+
             </div>
+            <div className='chart' style={{ height: '40rem', width: '60rem', backgroundColor: 'white' }}>
+                <PriceIndexChart />
             </div>
 
-            
+
 
             <button onClick={() => setShowMarker(!showMarker)}>
                 {showMarker ? 'Hide Marker' : 'Show Marker'}

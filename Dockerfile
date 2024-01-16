@@ -14,12 +14,12 @@ RUN npm install
 
 # for windows
 
-RUN apt-get -y install python3-numpy
-RUN apt-get -y install python3-pandas
-RUN apt-get -y install python3-psycopg2
-RUN apt-get -y install python3-sqlalchemy
-RUN apt-get -y install python3-matplotlib
-RUN apt-get -y install python3-seaborn
-RUN apt-get -y install python3-sklearn
+# RUN apt-get -y install python3-numpy
+# RUN apt-get -y install python3-pandas
+# RUN apt-get -y install python3-psycopg2
+# RUN apt-get -y install python3-sqlalchemy
+# RUN apt-get -y install python3-matplotlib
+# RUN apt-get -y install python3-seaborn
+# RUN apt-get -y install python3-sklearn
 
 CMD [ "node", "server/server.js" ]

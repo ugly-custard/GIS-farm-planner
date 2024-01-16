@@ -81,59 +81,59 @@ const Map = () => {
     useEffect(() => {
         console.log(coordinates)
         console.log(farms)
-    }, [farms])
+    }, [coordinates])
 
     return (
         <div className='Map__main'>
             <div className="searchbar">
-            <label htmlFor="location">Location:</label>
-            <input
-                type="text"
-                id="location"
-                placeholder="Enter location"
-                value={locationInput}
-                onChange={(e) => setLocationInput(e.target.value)}
-            />
-            <button onClick={searchLocation}>Search</button>
+                <label htmlFor="location">Location:</label>
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Enter location"
+                    value={locationInput}
+                    onChange={(e) => setLocationInput(e.target.value)}
+                />
+                <button onClick={searchLocation}>Search</button>
             </div>
 
             <div className="map" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh' }} >
                 <div className='map_map'>
 
-                <MapContainer key={coordinates.toString()} center={coordinates} zoom={5} style={{ height: '50vh', width: '50vw' }}>
+                    <MapContainer key={coordinates.toString()} center={coordinates} zoom={5} style={{ height: '50vh', width: '30vw' }}>
 
-                    <FeatureGroup>
-                        <EditControl
-                            position='topright'
-                            onCreated={_onCreated}
-                            onEdited={_onEdited}
-                            onDeleted={_onDeleted}
-                            draw={{
-                                rectangle: false,
-                                polyline: false,
-                                circlemarker: false,
-                                marker: false
-                            }}
+                        <FeatureGroup>
+                            <EditControl
+                                position='topright'
+                                onCreated={_onCreated}
+                                onEdited={_onEdited}
+                                onDeleted={_onDeleted}
+                                draw={{
+                                    rectangle: false,
+                                    polyline: false,
+                                    circlemarker: false,
+                                    marker: false
+                                }}
+                            />
+                        </FeatureGroup>
+
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         />
-                    </FeatureGroup>
 
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
+                        {/* Conditional Marker and Popup for India */}
+                        {showMarker && (
+                            <Marker position={coordinates}>
+                                <Popup>
+                                    add location name based on coordinates in h2 and coordinates in p
+                                    <h2></h2>
+                                    <p>Latitude: {coordinates[0]}, longitude: {coordinates[1]}</p>
+                                </Popup>
+                            </Marker>
+                        )}
 
-                    {/* Conditional Marker and Popup for India */}
-                    {showMarker && (
-                        <Marker position={coordinates}>
-                            <Popup>
-                                add location name based on coordinates in h2 and coordinates in p
-                                <h2></h2>
-                                <p>Latitude: {coordinates[0]}, longitude: {coordinates[1]}</p>
-                            </Popup>
-                        </Marker>
-                    )}
-
-                    {/* {Object.keys(farms).map((farm) => {
+                        {/* {Object.keys(farms).map((farm) => {
                         return (
                             <Circle
                                 key={farm}
@@ -145,36 +145,47 @@ const Map = () => {
                         )
                     })} */}
 
-                    {/* Had to do this to map the array, Before the endpoint was returning an object and now it returns an array */}
-                    {farms.length != 0 && farms.map((farm) => {
-                        console.log(farm["latitude"])
-                        return (
-                            <Marker
-                                key={farm["id"]}
-                                position={[farm["latitude"], farm["longitude"]]}
-                                pathOptions={{ color: 'red' }}
+                        {/* Had to do this to map the array, Before the endpoint was returning an object and now it returns an array */}
+                        {farms.length != 0 && farms.map((farm) => {
+                            console.log(farm["latitude"])
+                            return (
+                                <Marker
+                                    key={farm["id"]}
+                                    position={[farm["latitude"], farm["longitude"]]}
+                                    pathOptions={{ color: 'red' }}
 
-                            >
-                                <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
-                            </Marker>
-                        )
-                    })}
-                </MapContainer >
+                                >
+                                    <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
+                                </Marker>
+                            )
+                        })}
+                    </MapContainer >
                     <button onClick={handleLocations}>
                         Get Nearest Points
                     </button>
                 </div>
 
-                <div className="content">
-                    <h1>Info</h1>
+                <div className="content" style={{ width: '60rem' }}>
+                    <h1>info</h1>
                     {/* Tooltip content */}
                     {farms.length != 0 && farms.map((farm) => {
                         return (
                             <div key={farm["id"]} className="tooltip-item">
-                                <p>Cover Crop: {farm["covercrop"]}</p>
-                                <p>Cover Crop Group: {farm["covercropgroup"]}</p>
-                                <p>Grain Crop: {farm["graincrop"]}</p>
-                                <p>Grain Crop Group: {farm["graincropgroup"]}</p>
+                                <h3>{farm["siteinfor"]}</h3>
+                                <ul>
+                                    <li>Control Description: {farm["controldescription"]}</li>
+                                    <li>Conservation Type: {farm["conservation_type"]}</li>
+                                    <li>Cover Crop: {farm["covercrop"]}</li>
+                                    <li>Cover Crop Group: {farm["covercropgroup"]}</li>
+                                    <li>Grain Crop: {farm["graincrop"]}</li>
+                                    <li>Grain Crop Group: {farm["sandperc"]}</li>
+                                    <li>Percent of Sand: {farm["graincropgroupsandperc"]}</li>
+                                    <li>Percent of Silt: {farm["siltperc"]}</li>
+                                    <li>Texture: {farm["texture"]}</li>
+                                    <li>Fertilization Control: {farm["fertilization_c"]}</li>
+                                    <li>Fertilization Treatment: {farm["fertilization_t"]}</li>
+                                    <li>Grain Crop Group: {farm["graincropgroup"]}</li>
+                                </ul>
                             </div>
                         )
                     })}

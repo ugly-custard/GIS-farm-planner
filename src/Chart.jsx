@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, TimeScale } from 'chart.js';
+import "./Chart.css";
 
 import 'chartjs-adapter-date-fns';
 import { enUS } from 'date-fns/locale';
@@ -44,7 +45,7 @@ const PriceIndexChart = () => {
     }, []);
 
     return (
-        <div>
+        <div className='chart'>
             <h2>Price Index Chart</h2>
             <Line
                 data={chartData}

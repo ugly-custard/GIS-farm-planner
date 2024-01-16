@@ -85,6 +85,7 @@ const Map = () => {
 
     return (
         <div className='Map__main'>
+            <div className="searchbar">
             <label htmlFor="location">Location:</label>
             <input
                 type="text"
@@ -94,8 +95,11 @@ const Map = () => {
                 onChange={(e) => setLocationInput(e.target.value)}
             />
             <button onClick={searchLocation}>Search</button>
+            </div>
 
             <div className="map" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh' }} >
+                <div className='map_map'>
+
                 <MapContainer key={coordinates.toString()} center={coordinates} zoom={5} style={{ height: '50vh', width: '50vw' }}>
 
                     <FeatureGroup>
@@ -156,9 +160,13 @@ const Map = () => {
                         )
                     })}
                 </MapContainer >
+                    <button onClick={handleLocations}>
+                        Get Nearest Points
+                    </button>
+                </div>
 
                 <div className="content">
-                    <h1>info</h1>
+                    <h1>Info</h1>
                     {/* Tooltip content */}
                     {farms.length != 0 && farms.map((farm) => {
                         return (
@@ -173,19 +181,7 @@ const Map = () => {
                 </div>
 
             </div>
-            <div className='chart' style={{ height: '40rem', width: '60rem', backgroundColor: 'white' }}>
-                <PriceIndexChart />
-            </div>
 
-
-
-            <button onClick={() => setShowMarker(!showMarker)}>
-                {showMarker ? 'Hide Marker' : 'Show Marker'}
-            </button>
-
-            <button onClick={handleLocations}>
-                Get Nearest Points
-            </button>
         </div >
     );
 };

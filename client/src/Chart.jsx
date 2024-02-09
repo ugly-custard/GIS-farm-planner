@@ -47,7 +47,7 @@ const PriceIndexChart = () => {
 
     return (
         <div className='chart'>
-            <h2>Price Index Chart</h2>
+            <h2 style={{color: 'black'}}>Price Index Chart</h2>
             <Line
                 data={chartData}
                 options={{

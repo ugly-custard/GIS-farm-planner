@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import Map from './Map'
-import PriceIndexChart from './Chart'
+import Map from './components/Map'
+import PriceIndexChart from './components/Chart'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Map />
-      <PriceIndexChart />
+    <Map />
+    <PriceIndexChart />
     </>
   )
 }

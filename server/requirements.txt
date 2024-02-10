@@ -1,1 +1,8 @@
 Flask
+python3-numpy
+python3-pandas
+python3-psycopg2
+python3-sqlalchemy
+python3-matplotlib
+python3-seaborn
+python3-sklearn

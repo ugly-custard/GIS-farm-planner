@@ -1,24 +1,35 @@
+import json
 import joblib
 import numpy as np
 import pandas as pd
 
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import MinMaxScaler
-
 
 class FertilizerRecommender:
     def __init__(self):
-        self.le = LabelEncoder()
-        self.scaler = MinMaxScaler()
-        self.model = joblib.load("random_forest_model.pkl")
+        with open("./fertilizerDetection/labels.json") as f:
+            self.labels = json.load(f)
+        self.ct = joblib.load("./fertilizerDetection/colTrans.jbl.lzma")
+        self.model = joblib.load("./fertilizerDetection/model.jbl.lzma")
 
     def predict(self, data):
-        df = pd.DataFrame(data)
+        data = pd.DataFrame(data).T
+        data.columns = [
+            "Temparature",
+            "Humidity ",
+            "Moisture",
+            "Soil Type",
+            "Crop Type",
+            "Nitrogen",
+            "Potassium",
+            "Phosphorous",
+        ]
 
-        df["Soil Type"] = self.le.fit_transform(df["Soil Type"])
-        df["Crop Type"] = self.le.fit_transform(df["Crop Type"])
+        data["Soil_Code"] = data["Soil Type"].map(self.labels[0])
+        data["Crop_Code"] = data["Crop Type"].map(self.labels[1])
+        data.drop(["Soil Type"], axis=1, inplace=True)
+        data.drop(["Crop Type"], axis=1, inplace=True)
+        print(data)
 
-        df_scaled = pd.DataFrame(self.scaler.fit_transform(df), columns=df.columns)
-
-        X = np.array(df_scaled)
-        return self.model.predict(X)[0]
+        fertMap = {v: k for k, v in self.labels[2].items()}
+        fertilizer = self.model.predict(self.ct.transform(data))[0]
+        return fertMap[fertilizer]

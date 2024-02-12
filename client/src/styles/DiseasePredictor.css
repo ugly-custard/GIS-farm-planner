@@ -1,0 +1,69 @@
+.DiseasePredictor__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color2);
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+.DiseasePredictor__container h1{
+    color: var(--color4);
+}
+
+.DiseasePredictor__container p{
+    margin-top: 50px;
+    color: var(--color4);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.DiseasePredictor__fileInput {
+    margin-bottom: 10px;
+    background-color: var(--color4);
+    padding: 20px 40px;
+    color: var(--color2);
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.DiseasePredictor__dropZone {
+  width: 750px;
+  height: 500px;
+  border: 4px dashed var(--color1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  border-radius: 20px;
+  margin: 40px;
+}
+
+.DiseasePredictor__image {
+  width: 100%;
+  height: 100%;
+}
+
+.DiseasePredictor__cameraButton {
+    margin-bottom: 10px;
+    background-color: var(--color4);
+    color: var(--color2);
+    font-size: 20px;
+    padding: 20px 40px;
+    border-radius: 20px;
+}
+
+.DiseasePredictor__Buttons{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.DiseasePredictor__Buttons p{
+    margin: 0 20px;
+    margin-top: 10px;
+    font-size: 40px;
+    color: var(--color4);
+}

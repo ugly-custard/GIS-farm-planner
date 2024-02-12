@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Map from '../components/Map'
 import YeildPredictor from '../components/YeildPredictor'
+import DiseasePredictor from '../components/DiseasePredictor'
 
 function Dashboard() {
 
@@ -53,7 +54,7 @@ function Dashboard() {
       case 'Yeild Predictor':
         return <YeildPredictor />
       case 'Disease Pedictor':
-        return <h1>Disease Pedictor</h1>
+        return <DiseasePredictor />
       case 'Crop Recommendation':
         return <h1>Crop Recommendation</h1>
       case 'Fertilizer Recommendation':

@@ -60,6 +60,8 @@ function YeildPredictor() {
 
                     <label htmlFor="pesticide" className="yieldPrediction__form__label">Pesticide:</label>
                     <input type="text" id="pesticide" name="pesticide" className="yeildPrediction__Form__Select" />
+
+                    <button>Submit</button>
                 </form>
                 </div>
                 

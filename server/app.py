@@ -3,12 +3,14 @@ from flask import Flask, request, jsonify
 from cropRecommender.crpRcmndr import CropRecommender
 from fertilizerDetection.fertilizer import FertilizerRecommender
 from yieldPredictor.yieldPredictor import YieldPredictor
+from chatbot.run import Chatbot
 
 app = Flask(__name__)
 
 fertilizer_recommender = FertilizerRecommender()
 crop_recommender = CropRecommender()
 yield_predictor = YieldPredictor()
+chatbot = Chatbot(intents_file="./chatbot/intent.json", model_file="./chatbot/model_keras.h5", data_file="./chatbot/data.pickle")
 
 
 @app.route("/")
@@ -38,6 +40,13 @@ def fertilizer_recommendation():
     prediction = fertilizer_recommender.predict(data)
 
     return jsonify({"predicted_fertilizer": prediction})
+
+@app.route('/chatbot', methods=['POST'])
+def get_response():
+    data = request.get_json()
+    query = data['query']
+    response , queries = chatbot.get_response(query)
+    return jsonify({'response': response , 'queries': queries})
 
 
 if __name__ == "__main__":

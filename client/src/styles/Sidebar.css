@@ -1,0 +1,73 @@
+.sidebar {
+    height: 100%;
+    width: 20rem;
+    background-color: var(--color1);
+    color: var(--color2);
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar img{
+    width: 20rem;
+    height: 100px;
+    margin-bottom: 20px;
+    background-color: var(--black);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sidebar .accountcircle{
+    font-size: 5rem;
+    font-weight: 600;
+    padding: 0px;
+    margin: 0 10px;
+    color: linear-gradient(var(--color2), var(--color3));
+    background-color: var(--color1);
+    border-radius: 100%;
+    align-self: center;
+    margin-top: -60px;
+}
+
+.sidebar .name{
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0px;
+    margin: 0 10px;
+    color: linear-gradient(var(--color2), var(--color3));
+    align-self: center;
+}
+
+.sidebar .location{
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0px;
+    margin: 20px 10px px 10px;
+    color: var(--color2);
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .options{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--color2);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 15px;
+    padding-left: 50px;
+}
+
+.sidebar .options:hover{
+    background-color: var(--color2);
+    color: var(--color1);
+    cursor: pointer;
+}

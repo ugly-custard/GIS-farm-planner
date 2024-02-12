@@ -1,5 +1,4 @@
-.searchbar{
-    width: 100%;
+.searchbar {
     height: 50px;
     display: flex;
     justify-content: center;
@@ -8,6 +7,12 @@
     font-size: large;
 }
 
+.content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 0;
+}
 .searchbar input{
     width: 50%;
     height: 50%;
@@ -17,34 +22,28 @@
     font-size: 1.2rem;
 }
 
-.map_map{
-    width: 100vw;
-    height: 100vh;
+.map_map {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
-.map__main{
-    width: 100vw;
-    height: auto ;
+.Map__main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 12rem;
 }
 
-.content{
-    width: 80%;
-    height: 80%;
-    margin-top: 20rem;
-    margin-bottom: 20rem;
-    margin-left: 5rem;
+.forecast{
+    width:200px;
+    height:200px;
     padding: 20px;
+    margin: 10px;
     border: 1px solid black;
     text-align: left ;
-    overflow: scroll;
-    background-color: whitesmoke;
     color: black;
 }

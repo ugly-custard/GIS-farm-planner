@@ -1,0 +1,12 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.render__active__container{
+    overflow: hidden;
+}
+.dashboard__bottom{
+  display: flex;
+}

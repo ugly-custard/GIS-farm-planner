@@ -1,0 +1,98 @@
+.YeildPredictor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    background-color: var(--color2);
+    height: 100%;
+    width: 100%;
+}
+
+.YeildPredictor h2 {
+    color: var(--color4);
+}
+
+.YeildPredictorForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.iot-device-status {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    width: 75rem;
+    border: 4px dashed var(--color1);
+    padding: 10px;
+    border-radius: 10px;
+    background: url('../assets/undraw_flowers_vx06\ 1.svg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    font-size: 16px;
+    color: var(--color4);
+}
+
+.YeildPredictor__form{
+    margin-left: 5rem;
+}
+
+.iot-device-status h1 {
+    color: var(--color1);
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center  ;
+}
+
+.connStat{
+    font-weight: bold;
+    margin-top: -55px;
+    margin-bottom: 70px;
+}
+
+.iot-device-status button {
+    background-color: var(--color4);
+    border: none;
+    padding: 15px;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.iot-device-status button:hover {
+    background-color: var(--color1);
+    color: var(--white);
+}
+
+.yieldPrediction__form__label {
+    color: var(--color1);
+    font: 600;
+    font-size: 18px;
+}
+
+.yeildPrediction__form__select {
+    width: 30rem;
+    height: 50px;
+    font-size: 22px;
+    color: var(--color1);
+    border: 1px solid var(--color3);
+    border-radius: 10px;
+}
+
+.yeildPrediction__Form__Select {
+    width: 30rem;
+    height: 50px;
+    font-size: 22px;
+    color: var(--color1);
+    border: 1px solid var(--color3);
+    border-radius: 10px;
+}
+
+.YeildPredictorBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

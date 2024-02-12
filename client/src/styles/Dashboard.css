@@ -5,7 +5,8 @@
 }
 
 .render__active__container{
-    overflow: hidden;
+  overflow: hidden;
+  width: 100%;
 }
 .dashboard__bottom{
   display: flex;

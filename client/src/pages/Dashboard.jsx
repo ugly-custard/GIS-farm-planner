@@ -3,6 +3,7 @@ import '../styles/Dashboard.css'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Map from '../components/Map'
+import YeildPredictor from '../components/YeildPredictor'
 
 function Dashboard() {
 
@@ -50,7 +51,7 @@ function Dashboard() {
       case 'Dashboard':
         return <Map />
       case 'Yeild Predictor':
-        return <h1>Yeild Predictor</h1>
+        return <YeildPredictor />
       case 'Disease Pedictor':
         return <h1>Disease Pedictor</h1>
       case 'Crop Recommendation':

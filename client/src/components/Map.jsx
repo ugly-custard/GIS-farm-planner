@@ -65,7 +65,22 @@ const Map = () => {
         }
     };
 
-
+    const getMyLocationName = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                axios.get(`https://geocode.maps.co/search?q=${position.coords.latitude},${position.coords.longitude}&api_key=${geocodeKey}`)
+                    .then(response => {
+                        console.log(response.data);
+                        setLocationInput(response.data[0].formatted);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching location:', error);
+                    });
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+    };
 
     const _onCreated = e => {
         console.log(e)
@@ -118,7 +133,7 @@ const Map = () => {
 
             <div className="map" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh' }} >
                 <div className='map_map'>
-                    <div className="searchbar">
+                    {/* <div className="searchbar">
                         <label htmlFor="location">Location:</label>
                         <input
                             type="text"
@@ -128,7 +143,7 @@ const Map = () => {
                             onChange={(e) => setLocationInput(e.target.value)}
                         />
                         <button onClick={searchLocation}>Search</button>
-                    </div>
+                    </div> */}
 
                     <MapContainer key={coordinates.toString()} center={coordinates} zoom={15} style={{ height: '50vh', width: '30vw' }}>
 
@@ -190,9 +205,9 @@ const Map = () => {
                             )
                         })}
                     </MapContainer >
-                    <button onClick={handleLocations}>
+                    {/* <button onClick={handleLocations}>
                         Get Nearest Points
-                    </button>
+                    </button> */}
                     <button onClick={getMyLocation}>
                         Get My Location
                     </button>

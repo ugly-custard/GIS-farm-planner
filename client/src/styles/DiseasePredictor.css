@@ -67,3 +67,10 @@
     font-size: 40px;
     color: var(--color4);
 }
+
+.diseasePredictorImg {
+  width: 81.5%;
+  height: 90%;
+  object-fit: cover;
+  padding: 20px;
+}

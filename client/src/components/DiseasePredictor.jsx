@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/DiseasePredictor.css';
+import img from '../assets/undraw_farm_girl_dnpe (1).svg';
 
 function DiseasePredictor() {
     const [image, setImage] = useState(null);
@@ -102,7 +103,7 @@ function DiseasePredictor() {
                         className="DiseasePredictor__image"
                     />
                 ) : (
-                    'Drag and drop an image here'
+                    <img src={img} alt="" className='diseasePredictorImg'/>
                 )}
             </div>
             

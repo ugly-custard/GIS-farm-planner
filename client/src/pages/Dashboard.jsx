@@ -70,12 +70,14 @@ function Dashboard() {
         <Navbar />
       </div>
       <div className="dashboard__bottom">
-        <Sidebar
-          name={data.name}
-          email={data.email}
-          location={data.location}
-          options={options}
-        />
+        <div className="dashboard__bottom__left">
+          <Sidebar
+            name={data.name}
+            email={data.email}
+            location={data.location}
+            options={options}
+          />
+        </div>
         <div className="render__active__container">
           {renderActive()}
         </div>

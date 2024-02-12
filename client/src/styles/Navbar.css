@@ -12,6 +12,15 @@
   margin: 0;
 }
 
+.navbar__right__buttons {
+  margin: 0 20px;
+}
+
+.gtrans {
+  background-color: var(--white);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 .navbar__right {
   display: flex;
   align-items: center;

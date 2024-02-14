@@ -8,8 +8,6 @@ import DiseasePredictor from '../components/DiseasePredictor'
 import CropRecommendation from '../components/CropRecommendation'
 import FertilizerRecommendation from '../components/FertilizerRecommendation'
 
-const geocodeKey = "65a5b22dc9fad405466629dzc6a56a3"
-
 function Dashboard() {
 
   const [active, setActive] = React.useState('Dashboard')

@@ -294,6 +294,53 @@ const Map = () => {
                     </button> */}
                     {/* <button onClick={getMyLocation}>
                         Get My Location
+                    </button>
+                </div>
+
+                <div className="content">
+                    <div className="forecast">
+                        <div className="main">
+                            <h1>Main</h1>
+                            {forecast.main &&
+                                <div>
+                                    <p>{forecast.main.humitdy}</p>
+                                    <p>{forecast.main.pressure}</p>
+                                    <p>{forecast.main.sea_level}</p>
+                                    <p>{forecast.main.temp}</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div className="forecast">
+                        <h2>Weather</h2>
+                        {forecast.weather &&
+                            <div>
+                                <img src={`../assets/weathericons/${forecast.weather[0].icon}.png`} alt={forecast.weather[0].icon} />
+                                <p>{forecast.weather[0].main}</p>
+                                <p>{forecast.weather[0].description}</p>
+                            </div>
+                        }
+                    </div>
+                    <div className="forecast">
+                        <h2>Wind Speed</h2>
+                        {forecast.wind &&
+                            <div>
+                                <p>{forecast.wind.deg}</p>
+                                <p>{forecast.wind.speed}</p>
+                                <p>{forecast.wind.gust}</p>
+                            </div>
+                        }
+                    </div>
+                    <div className="forecast">
+                        <h2>Timezone</h2>
+                        {forecast.timezone &&
+                            <div>
+                                <p>{forecast.timezone}</p>
+                                <p>{forecast.visibility}</p>
+                                <p>no. of clouds:{forecast.clouds.all}</p>
+                            </div>
+                        }
+                    </div>
                     </button> */}
                 </div>
                 {/* Tooltip content */}

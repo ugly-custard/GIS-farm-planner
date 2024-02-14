@@ -1,0 +1,70 @@
+.CropRecommendation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    background-color: var(--color2);
+    height: 100%;
+    width: 100%;
+}
+
+.CropRecommendation__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: space-around;
+    justify-content: center;
+    padding: 20px;
+}
+
+.CropRecommendation__bottom__left img{
+    width: 700px;
+    height: 700px;
+}
+
+.CropRecommendation__bottom__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.CropRecommendation__label{
+    display: flex;
+    flex-direction: column;
+    color: var(--color1);
+    font: 600;
+    font-size: 18px;
+    margin: 5px 0;
+    margin-left: 20px;
+}
+
+.CropRecommendation__input{
+    width: 30rem;
+    height: 40px;
+    font-size: 22px;
+    color: var(--color1);
+    border: 1px solid var(--color3);
+    border-radius: 10px;
+}
+
+.CropRecommendation__bottom__right form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.CropRecommendation__bottom__right form button{
+    height: 42px;
+    background-color: var(--color4);
+    border: none;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;  
+    margin-top: 20px; 
+    margin-left: 15px;
+    width: 95%;
+}

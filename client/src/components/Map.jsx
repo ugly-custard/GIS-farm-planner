@@ -231,7 +231,7 @@ const Map = () => {
                         <h2>Weather</h2>
                         {forecast.weather &&
                             <div>
-                                <img src={`./assets/weathericons/${forecast.weather[0].icon}.png`} alt="Weather Icon" />
+                                <img src={`../assets/weathericons/${forecast.weather[0].icon}.png`} alt={forecast.weather[0].icon} />
                                 <p>{forecast.weather[0].main}</p>
                                 <p>{forecast.weather[0].description}</p>
                             </div>

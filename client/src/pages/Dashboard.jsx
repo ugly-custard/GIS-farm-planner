@@ -5,6 +5,8 @@ import Sidebar from '../components/Sidebar'
 import Map from '../components/Map'
 import YeildPredictor from '../components/YeildPredictor'
 import DiseasePredictor from '../components/DiseasePredictor'
+import CropRecommendation from '../components/CropRecommendation'
+import FertilizerRecommendation from '../components/FertilizerRecommendation'
 
 function Dashboard() {
 
@@ -19,31 +21,38 @@ function Dashboard() {
   const options = [
     {
       label: 'Dashboard',
-      onclick: () => setActive('Dashboard')
+      onclick: () => setActive('Dashboard'),
+      active: active === 'Dashboard' // Check if the option is active
     },
     {
       label: 'Yeild Predictor',
-      onclick: () => setActive('Yeild Predictor')
+      onclick: () => setActive('Yeild Predictor'),
+      active: active === 'Yeild Predictor' // Check if the option is active
     },
     {
       label: 'Disease Pedictor',
-      onclick: () => setActive('Disease Pedictor')
+      onclick: () => setActive('Disease Pedictor'),
+      active: active === 'Disease Pedictor' // Check if the option is active
     },
     {
       label: 'Crop Recommendation',
-      onclick: () => setActive('Crop Recommendation')
+      onclick: () => setActive('Crop Recommendation'),
+      active: active === 'Crop Recommendation' // Check if the option is active
     },
     {
       label: 'Fertilizer Recommendation',
-      onclick: () => setActive('Fertilizer Recommendation')
+      onclick: () => setActive('Fertilizer Recommendation'),
+      active: active === 'Fertilizer Recommendation' // Check if the option is active
     },
     {
       label: 'Market Trends',
-      onclick: () => setActive('Market Trends')
+      onclick: () => setActive('Market Trends'),
+      active: active === 'Market Trends' // Check if the option is active
     },
     {
       label: 'Settings',
-      onclick: () => setActive('Settings')
+      onclick: () => setActive('Settings'),
+      active: active === 'Settings' // Check if the option is active
     }
   ]
 
@@ -56,13 +65,15 @@ function Dashboard() {
       case 'Disease Pedictor':
         return <DiseasePredictor />
       case 'Crop Recommendation':
-        return <h1>Crop Recommendation</h1>
+        return <CropRecommendation />
       case 'Fertilizer Recommendation':
-        return <h1>Fertilizer Recommendation</h1>
+        return <FertilizerRecommendation />
       case 'Market Trends':
         return <h1>Market Trends</h1>
       case 'Settings':
         return <h1>Settings</h1>
+      default:
+        return <Map />
     }
   }
 
@@ -78,6 +89,7 @@ function Dashboard() {
             email={data.email}
             location={data.location}
             options={options}
+            active={active} // Pass the active option as a prop to the Sidebar component
           />
         </div>
         <div className="render__active__container">

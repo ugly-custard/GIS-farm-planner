@@ -15,7 +15,7 @@ function Sidebar(props) {
             <div className="name">{name}</div>
             <div className="location"><LocationOnIcon />{location}</div>
             {options.map((option, index) => (
-                <div className='options' onClick={option.onclick}key={index}>{option.label}</div>
+                <div className={`options ${option.active ? 'active' : ''}`} onClick={option.onclick} key={index}>{option.label}</div>
             ))}
         </div>
     )

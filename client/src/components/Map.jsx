@@ -7,6 +7,24 @@ import "leaflet-draw/dist/leaflet.draw.css"
 import { EditControl } from 'react-leaflet-draw';
 import axios from 'axios'; ``
 import PriceIndexChart from './Chart';
+import _01d from '../assets/weathericons/01d.png';
+import _02d from '../assets/weathericons/02d.png';
+import _03d from '../assets/weathericons/03d.png';
+import _04d from '../assets/weathericons/04d.png';
+import _09d from '../assets/weathericons/09d.png';
+import _10d from '../assets/weathericons/10d.png';
+import _11d from '../assets/weathericons/11d.png';
+import _13d from '../assets/weathericons/13d.png';
+import _50d from '../assets/weathericons/50d.png';
+import _01n from '../assets/weathericons/01n.png';
+import _02n from '../assets/weathericons/02n.png';
+import _03n from '../assets/weathericons/03n.png';
+import _04n from '../assets/weathericons/04n.png';
+import _09n from '../assets/weathericons/09n.png';
+import _10n from '../assets/weathericons/10n.png';
+import _11n from '../assets/weathericons/11n.png';
+import _13n from '../assets/weathericons/13n.png';
+import _50n from '../assets/weathericons/50n.png';
 
 //note: lets not map farms everytime we render the map, lets just map the farms once and then update the map when we add a new farm
 //or another approach could be that we get the farms using lattitude and longitude and then map the farms
@@ -59,28 +77,19 @@ const Map = () => {
                 setLatitude(position.coords.latitude);
                 setLongitude(position.coords.longitude);
                 setCoordinates([position.coords.latitude, position.coords.longitude]);
+                setUserLocation(`${position.coords.latitude},${position.coords.longitude}`);
             });
         } else {
             alert('Geolocation is not supported by this browser.');
         }
     };
 
-    const getMyLocationName = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                axios.get(`https://geocode.maps.co/search?q=${position.coords.latitude},${position.coords.longitude}&api_key=${geocodeKey}`)
-                    .then(response => {
-                        console.log(response.data);
-                        setLocationInput(response.data[0].formatted);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching location:', error);
-                    });
-            });
-        } else {
-            alert('Geolocation is not supported by this browser.');
-        }
+
+    const setUserLocation = (location) => {
+        localStorage.setItem('user.location', location);
     };
+
+
 
     const _onCreated = e => {
         console.log(e)
@@ -123,15 +132,90 @@ const Map = () => {
 
 
     useEffect(() => {
-        console.log(coordinates)
-        console.log(farms)
-    }, [coordinates])
+        const interval = setInterval(() => {
+            getMyLocation();
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <div className='Map__main'>
 
 
-            <div className="map" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '90vh' }} >
+            <div className="map" >
+                
+
+                <div className="content">
+                    <div className="forecast" id='forecast_1'>
+                        
+                            <h1>Main</h1>
+                            {forecast.main &&
+                                <div>
+                                    <p>Humidity: {forecast.main.humitdy}</p>
+                                    <p>Pressure: {forecast.main.pressure}</p>
+                                    <p>Sea_level: {forecast.main.sea_level}</p>
+                                    <p>Temperature{forecast.main.temp}</p>
+                                </div>
+                            }
+                        
+                    </div>
+                    <div className="forecast" id='forecast_2'>
+                        <h2>Weather</h2>
+                        {forecast.weather &&
+                            <div>
+                                <div className="weatherIcon">
+                                    {(() => {
+                                        switch (forecast.weather[0].icon) {
+                                            case "01d": return <img src={_01d} alt="01d" />
+                                            case "02d": return <img src={_02d} alt="02d" />
+                                            case "03d": return <img src={_03d} alt="03d" />
+                                            case "04d": return <img src={_04d} alt="04d" />
+                                            case "09d": return <img src={_09d} alt="09d" />
+                                            case "10d": return <img src={_10d} alt="10d" />
+                                            case "11d": return <img src={_11d} alt="11d" />
+                                            case "13d": return <img src={_13d} alt="13d" />
+                                            case "50d": return <img src={_50d} alt="50d" />
+                                            case "01n": return <img src={_01n} alt="01n" />
+                                            case "02n": return <img src={_02n} alt="02n" />
+                                            case "03n": return <img src={_03n} alt="03n" />
+                                            case "04n": return <img src={_04n} alt="04n" />
+                                            case "09n": return <img src={_09n} alt="09n" />
+                                            case "10n": return <img src={_10n} alt="10n" />
+                                            case "11n": return <img src={_11n} alt="11n" />
+                                            case "13n": return <img src={_13n} alt="13n" />
+                                            case "50n": return <img src={_50n} alt="50n" />
+                                            default: return <img src={_01d} alt="01d" />
+                                        }
+                                    }
+                                    )()}
+                                </div>
+                                <p>{forecast.weather[0].main}</p>
+                                <p>{forecast.weather[0].description}</p>
+                            </div>
+                        }
+                    </div>
+                    <div className="forecast" id='forecast_3'>
+                        <h2>Wind Speed</h2>
+                        {forecast.wind &&
+                            <div>
+                                <p>Wind Temp:{forecast.wind.deg}</p>
+                                <p>Wind Speed:{forecast.wind.speed}</p>
+                                <p>Wind Gust:{forecast.wind.gust}</p>
+                            </div>
+                        }
+                    </div>
+                    <div className="forecast" id='forecast_4'>
+                        <h2>Timezone</h2>
+                        {forecast.timezone &&
+                            <div>
+                                <p>Timezone{forecast.timezone}</p>
+                                <p>Visibility{forecast.visibility}</p>
+                                <p>no. of clouds:{forecast.clouds.all}</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+
                 <div className='map_map'>
                     {/* <div className="searchbar">
                         <label htmlFor="location">Location:</label>
@@ -145,7 +229,7 @@ const Map = () => {
                         <button onClick={searchLocation}>Search</button>
                     </div> */}
 
-                    <MapContainer key={coordinates.toString()} center={coordinates} zoom={15} style={{ height: '50vh', width: '30vw' }}>
+                    <MapContainer key={coordinates.toString()} center={coordinates} zoom={10} style={{ height: '86.7vh', width: '35vw', margin: 0, borderRadius: "15px"}}>
 
                         <FeatureGroup>
                             <EditControl
@@ -172,7 +256,7 @@ const Map = () => {
                             <Marker position={coordinates}>
                                 <Popup>
                                     <h2></h2>
-                                    <p>Latitude: {coordinates[0]}, longitude: {coordinates[1]}</p>
+                                    <p>You're here</p>
 
                                 </Popup>
                             </Marker>
@@ -200,7 +284,7 @@ const Map = () => {
                                     pathOptions={{ color: 'red' }}
 
                                 >
-                                    <Tooltip>Cover Crop: {farm["covercrop"]} | Cover Crop Group: {farm["covercropgroup"]} | Grain Crop: {farm["graincrop"]} | Grain Crop Group: {farm["graincropgroup"]}</Tooltip>
+                                    <Tooltip>You're here</Tooltip>
                                 </Marker>
                             )
                         })}
@@ -208,55 +292,9 @@ const Map = () => {
                     {/* <button onClick={handleLocations}>
                         Get Nearest Points
                     </button> */}
-                    <button onClick={getMyLocation}>
+                    {/* <button onClick={getMyLocation}>
                         Get My Location
-                    </button>
-                </div>
-
-                <div className="content">
-                    <div className="forecast">
-                        <div className="main">
-                            <h1>Main</h1>
-                            {forecast.main &&
-                                <div>
-                                    <p>{forecast.main.humitdy}</p>
-                                    <p>{forecast.main.pressure}</p>
-                                    <p>{forecast.main.sea_level}</p>
-                                    <p>{forecast.main.temp}</p>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                    <div className="forecast">
-                        <h2>Weather</h2>
-                        {forecast.weather &&
-                            <div>
-                                <img src={`./assets/weathericons/${forecast.weather[0].icon}.png`} alt="Weather Icon" />
-                                <p>{forecast.weather[0].main}</p>
-                                <p>{forecast.weather[0].description}</p>
-                            </div>
-                        }
-                    </div>
-                    <div className="forecast">
-                        <h2>Wind Speed</h2>
-                        {forecast.wind &&
-                            <div>
-                                <p>{forecast.wind.deg}</p>
-                                <p>{forecast.wind.speed}</p>
-                                <p>{forecast.wind.gust}</p>
-                            </div>
-                        }
-                    </div>
-                    <div className="forecast">
-                        <h2>Timezone</h2>
-                        {forecast.timezone &&
-                            <div>
-                                <p>{forecast.timezone}</p>
-                                <p>{forecast.visibility}</p>
-                                <p>no. of clouds:{forecast.clouds.all}</p>
-                            </div>
-                        }
-                    </div>
+                    </button> */}
                 </div>
                 {/* Tooltip content */}
                 {/* {farms.length != 0 && farms.map((farm) => {

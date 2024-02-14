@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className='navbar'>
         <div className='navbar__left'>
-            <h1>KhetiBaadi</h1>
+            <h1>Kheti<span style={{color:"green"}}>Baadi</span></h1>
         </div>
         <div className='navbar__right'>
             <div className="gtrans">

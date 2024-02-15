@@ -7,6 +7,7 @@ import YeildPredictor from '../components/YeildPredictor'
 import DiseasePredictor from '../components/DiseasePredictor'
 import CropRecommendation from '../components/CropRecommendation'
 import FertilizerRecommendation from '../components/FertilizerRecommendation'
+import Chatbot from '../components/Chatbot'
 
 function Dashboard() {
 
@@ -96,6 +97,7 @@ function Dashboard() {
 
   return (
     <div className='dashboard'>
+      <Chatbot />
       <div className="dashboard__top">
         <Navbar />
       </div>

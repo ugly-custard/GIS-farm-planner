@@ -1,0 +1,104 @@
+.chat_bot{
+    /* this is button */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 1000;
+    background-color: #f4f4f4;
+    margin: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.chat_bot_modal{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background-color: #f4f4f4;
+    border: 1px solid #000;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    margin: 20px;
+    transition: width 0.5s;
+}
+
+.chat_bot_modal_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    overflow: auto;
+}
+
+.chat_bot_input{
+    display : flex;
+    width: 100% ;
+
+}
+
+.chat_bot_close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #000;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat_bot_chat_input{
+    width: 65%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    margin: 4px;
+}
+
+.chat_bot_submit_button{
+    width: 20%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin: 4px;
+}
+
+.chat_bot_message{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.chat_bot_message_bot{
+    background-color: #f4f4f4;
+}
+
+.Chat_bot_message_user{
+    background-color: #000;
+}

@@ -13,9 +13,10 @@ function Chatbot() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+
                 body: JSON.stringify({ chat }),
             });
-            setResponse(res);
+            setChats(res);
         } catch (err) {
             console.log(err);
         }

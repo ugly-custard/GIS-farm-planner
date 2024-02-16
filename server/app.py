@@ -1,3 +1,5 @@
+import base64
+import flask
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -67,16 +69,11 @@ def get_response():
 def disease_prediction():
     if "file" not in request.files:
         return jsonify({"error": "No file part"})
-    file = request.files["file"]
-    # file.save(file.filename)
-    # if file.filename == '':
-    #     return jsonify({'error': 'No selected file'}), 400
-    if file:
-        result = disease_predictor.predict_image(file)
-        print(type(file))
-        #plt.imshow(file.read())
-        
-        return jsonify({"result": result})
+    img = request.files["file"]
+    if img:
+        result, img = disease_predictor.predict_image(img)
+        img_str = base64.b64encode(img.read())
+        return jsonify({"result": result, "image": img_str})
 
 
 if __name__ == "__main__":

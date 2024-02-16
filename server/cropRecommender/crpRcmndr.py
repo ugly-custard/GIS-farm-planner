@@ -10,5 +10,5 @@ class CropRecommender:
     def predict(self, data):
         data = pd.DataFrame(data).T
         data.columns = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
-        print(data)
+        
         return self.model.predict(data)[0]

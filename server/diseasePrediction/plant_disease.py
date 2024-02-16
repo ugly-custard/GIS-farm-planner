@@ -17,7 +17,7 @@ class diseasePredictor():
              transforms.ToTensor()]
         )
         self.model = Plant_Disease_Model2()  
-        self.model.load_state_dict(torch.load('diseasePrediction/plantDisease-resnet34.pth'))
+        self.model.load_state_dict(torch.load('diseasePrediction/plantDisease-resnet34.pth', map_location=torch.device('cpu')))
         self.model.eval()
 
 

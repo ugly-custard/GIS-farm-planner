@@ -1,3 +1,4 @@
+from time import process_time
 import cv2
 import torch
 import numpy as np
@@ -31,16 +32,17 @@ class diseasePredictor():
 
         grey = cv2.cvtColor(masked, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(grey, (5, 5), cv2.BORDER_DEFAULT)
-        _, thresh = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        _, thresh = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
         kernel = np.ones((3, 3), np.uint8)
         opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=2)
-        sure_bg = cv2.dilate(opening, kernel, iterations=3)
+        sure_bg = cv2.erode(opening, kernel, iterations=3)
 
         dist_transform = cv2.distanceTransform(sure_bg, cv2.DIST_L2, 3)
-        ret, sure_fg = cv2.threshold(dist_transform, 0.1*dist_transform.max(), 255, 0)
+        _, sure_fg = cv2.threshold(dist_transform, 0.1*dist_transform.max(), 255, 0)
 
         edges = cv2.Canny(np.uint8(sure_fg), 50, 100)
+
         contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         if len(contours) != 0:
             c = max(contours, key = cv2.contourArea)
@@ -63,5 +65,5 @@ class diseasePredictor():
             output = self.model(img)
             _, predicted = torch.max(output, 1)
             predicted_label = class_labels[predicted.item()]
-        # print("Predicted image:", predicted_label)
-        return predicted_label
+        img = self.processImg(img)
+        return predicted_label, img

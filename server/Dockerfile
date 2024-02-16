@@ -1,6 +1,6 @@
 FROM node:20.4.0
 
-RUN apt-get update && apt-get install python3-pip -y
+RUN apt-get update
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN npm install
 
 #for linux
 
-# RUN xargs apt-get -y install < requirements.txt
+RUN xargs apt-get -y install < reqs.txt
 
 # for windows
 

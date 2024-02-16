@@ -7,5 +7,10 @@ package-lock.json
 node_modules/
 Dockerfile
 docker-compose.yml
-public/
-src/
+chatbot/
+cropRecommender/
+diseasePrediction/
+fertilizerDetection/
+yieldPredictor/
+leaf_segmentation.ipynb
+requirements.txt

@@ -48,8 +48,9 @@ class Chatbot:
                     response = random.choice(item['responses'])
                     queries = item.get('queries', [])
                     if queries:
-                        queries_str = ", ".join(queries)
-                        return response, queries_str
+                        # queries_str = ", ".join(queries)
+                        
+                        return response, queries
             return response, []
         else:
             return "I apologize, but I can't quite get you. Could you please repeat your query?", []

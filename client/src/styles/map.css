@@ -8,7 +8,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    
+
 }
 
 .searchbar input {
@@ -94,4 +94,44 @@
 .weatherIcon img {
     width: 200px;
     height: 200px;
+}
+
+.map_container {
+    height: 86.7vh;
+    width: 35vw;
+    margin: 0;
+    border-radius: 15px;
+}
+
+@media  (max-width: 768px) {
+    .map {
+        width: 100vw;
+        flex-direction: column-reverse;
+    }
+
+    .Map__main {
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    .map_container {
+        height: 35vh;
+        width: 100vw;
+        margin: 0;
+        border-radius: 15px;
+    }
+
+    .forecast {
+        scale: 0.5;
+        height: auto;
+        margin: 10px;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
 }

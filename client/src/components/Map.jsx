@@ -229,7 +229,17 @@ const Map = () => {
                         <button onClick={searchLocation}>Search</button>
                     </div> */}
 
-                    <MapContainer key={coordinates.toString()} center={coordinates} zoom={10} style={{ height: '86.7vh', width: '35vw', margin: 0, borderRadius: "15px"}}>
+                    <MapContainer key={coordinates.toString()} center={coordinates} zoom={10} style={{ height: '86.7vh', width: '35vw', margin: 0, borderRadius: "15px", }} className='map_container'>
+                        <style>
+                            {`
+                            @media screen and (max-width: 768px) {
+                                .map_container {
+                                    width: 100vw;
+                                    height: 100vh;
+                                }
+                            }
+                            `}
+                        </style>
 
                         <FeatureGroup>
                             <EditControl

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/CropRecommendation.css"
 import Connect from './Connect'
 import img from "../assets/undraw_drag_re_shc0.svg"
@@ -22,6 +22,16 @@ function FertilizerRecommendation() {
     //    'Nitrogen', 'Potassium', 'Phosphorous', 'Fertilizer Name'
 
     const [result, setResult] = useState('')
+
+    const fertilizerOptions = {
+        'Urea': 'Urea is a common nitrogen fertilizer widely used in agriculture. It contains a high concentration of nitrogen, typically around 46%. It\'s usually applied to crops as granules or in solution form to provide a readily available source of nitrogen for plant growth. It\'s suitable for most crops and is particularly effective for promoting vegetative growth.',
+        'DAP (Diammonium phosphate)': 'DAP is a phosphorus fertilizer that contains nitrogen and phosphorus in the form of ammonium and phosphate. It typically has an N-P-K ratio of 18-46-0, meaning it contains 18% nitrogen and 46% phosphorus. DAP is commonly used to promote root development and early plant growth, making it suitable for a wide range of crops, especially those with high phosphorus requirements like legumes and oilseeds.',
+        '14-35-14': 'This is a fertilizer formulation with an N-P-K ratio of 14-35-14, meaning it contains 14% nitrogen, 35% phosphorus, and 14% potassium. This balanced ratio makes it suitable for promoting overall plant growth and development, as well as enhancing flowering and fruiting in crops. It\'s commonly used during the early stages of growth or during flowering and fruiting stages.',
+        '28-28': 'This fertilizer has an N-P-K ratio of 28-28-0, meaning it contains 28% nitrogen and 28% phosphorus, with no potassium. It\'s a high-phosphorus fertilizer suitable for promoting root development and early plant growth. It\'s often used as a starter fertilizer for crops that require a significant amount of phosphorus, such as corn, wheat, and vegetables.',
+        '17-17-17': 'This fertilizer has a balanced N-P-K ratio of 17-17-17, providing equal amounts of nitrogen, phosphorus, and potassium. It\'s suitable for promoting overall plant growth and development throughout the growing season. It\'s commonly used for a wide range of crops and can be applied as a general-purpose fertilizer for both soil and foliar applications.',
+        '10-26-10': 'This fertilizer formulation has a higher phosphorus content, with an N-P-K ratio of 10-26-10. It contains 10% nitrogen, 26% phosphorus, and 10% potassium. This high-phosphorus fertilizer is often used to promote root development, flowering, and fruiting in crops. It\'s particularly beneficial for crops that have high phosphorus requirements during the early stages of growth and for flowering and fruiting stages.',
+    };
+
 
 
     const [parameters, setParameters] = useState({
@@ -60,10 +70,14 @@ function FertilizerRecommendation() {
             body: JSON.stringify(body),
         });
         const res = await response.json();
-        console.log(res)
+        console.log(res.predicted_fertilizer)
         setResult(res.predicted_fertilizer)
         console.log(result)
     };
+
+    useEffect(() => {
+        console.log(toString(fertilizerOptions[result]));
+    }, [result])
 
 
     return (
@@ -76,10 +90,17 @@ function FertilizerRecommendation() {
                     <img src={img} alt="" style={{ marginTop: '100px' }} />
                 </div>
                 <div className="CropRecommendation__bottom__right">
-                    <form onSubmit={handleSubmit}>
+                    {result ? (
+                        <div className="CropRecommendation__result">
+                            <h2>Recommended Fertilizer: {result}</h2>
+                            <h3>Details:</h3>
+                            <p>{fertilizerOptions[result]}</p>
+                        </div>
+                    ) : (
+                            <form onSubmit={handleSubmit}>
                         <label className="CropRecommendation__label">
                             Temperature:
-                            <input className="CropRecommendation__input" name='temperature' type="text" value={parameters.temperature} onChange={onChange} placeholder='in %'/>
+                                    <input className="CropRecommendation__input" name='temperature' type="text" value={parameters.temperature} onChange={onChange} placeholder='in degree celcius' />
                         </label>
                         <label className="CropRecommendation__label">
                             Relative Humidity:
@@ -119,13 +140,10 @@ function FertilizerRecommendation() {
                         </label>
                         <button type="submit">Submit</button>
                     </form>
+                    )}
                 </div>
             </div>
-            {result &&
-            <div style={{border: "2px green", backgroundColor: "white", borderRadius: "2rem"}}>
-                <p><strong>Predicted Fertilizer: </strong>{result}</p>
-            </div>
-            }
+
         </div>
     );
 }

@@ -56,7 +56,10 @@ function YeildPredictor() {
             <Connect />
             <div className="YeildPredictorBottom">
                 <img src={img} alt="" />
-                <div className='YeildPredictor__form'>
+                {result ? (
+                    <h2>Predicted Yield: {result} Metric Tonnes per hectres</h2>
+                ):(
+                    <div className='YeildPredictor__form'>
                     <h2>Fill Out the Details Manually</h2>
                     <form className='YeildPredictorForm' onSubmit={handleSubmit}>
                         <label htmlFor="crop" className="yieldPrediction__form__label">Crop:</label>
@@ -104,13 +107,10 @@ function YeildPredictor() {
                         <button type='submit' >Submit</button>
                     </form>
                 </div>
+                )}
+
 
             </div>
-            {result &&
-                <div style={{ border: "2px green", backgroundColor: "white", borderRadius: "2rem" }}>
-                    <p><strong>Predicted Yield: </strong>{result} production?unit area</p>
-                </div>
-            }
 
         </div>
     )

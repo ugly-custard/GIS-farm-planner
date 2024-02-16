@@ -74,31 +74,31 @@ function CropRecommendation() {
                     <form onSubmit={handleSubmit}>
                         <label className="CropRecommendation__label">
                             Nitrogen:
-                            <input className="CropRecommendation__input" name='nitrogen' type="text" value={parameters.nitrogen} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='nitrogen' type="text" value={parameters.nitrogen} onChange={onChange} placeholder='in ratio' />
                         </label>
                         <label className="CropRecommendation__label">
                             Phosphorous:
-                            <input className="CropRecommendation__input" name='phosphorous' type="text" value={parameters.phosphorous} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='phosphorous' type="text" value={parameters.phosphorous} onChange={onChange} placeholder='in ratio'/>
                         </label>
                         <label className="CropRecommendation__label">
                             Potassium:
-                            <input className="CropRecommendation__input" name='potassium' type="text" value={parameters.potassium} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='potassium' type="text" value={parameters.potassium} onChange={onChange} placeholder='in ratio'/>
                         </label>
                         <label className="CropRecommendation__label">
                             Temperature:
-                            <input className="CropRecommendation__input" name='temperature' type="text" value={parameters.temperature} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='temperature' type="text" value={parameters.temperature} onChange={onChange} placeholder='in degree celcius'/>
                         </label>
                         <label className="CropRecommendation__label">
-                            Humidity:
-                            <input className="CropRecommendation__input" name='humidity' type="text" value={parameters.humidity} onChange={onChange} />
+                            Relative Humidity:
+                            <input className="CropRecommendation__input" name='humidity' type="text" value={parameters.humidity} onChange={onChange} placeholder='in %'/>
                         </label>
                         <label className="CropRecommendation__label">
                             pH:
-                            <input className="CropRecommendation__input" name='ph' type="text" value={parameters.ph} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='ph' type="text" value={parameters.ph} onChange={onChange} placeholder='0 to 14'/>
                         </label>
                         <label className="CropRecommendation__label">
                             Rainfall:
-                            <input className="CropRecommendation__input" name='rainfall' type="text" value={parameters.rainfall} onChange={onChange} />
+                            <input className="CropRecommendation__input" name='rainfall' type="text" value={parameters.rainfall} onChange={onChange} placeholder='in mm'/>
                         </label>
                         <button type="submit">Submit</button>
                     </form>

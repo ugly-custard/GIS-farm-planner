@@ -72,7 +72,7 @@ def disease_prediction():
     img = request.files["file"]
     if img:
         result, img = disease_predictor.predict_image(img)
-        img_str = base64.b64encode(img.read())
+        img_str = base64.b64encode(img).decode()
         return jsonify({"result": result, "image": img_str})
 
 

@@ -24,13 +24,14 @@ class diseasePredictor():
 
     def processImg(self, img):
         # img2 = img.copy()
-        lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+        print(type(img))
+        lab = cv2.cvtColor(img, cv2.COLOR_RGB2LAB)
 
         a_channel = lab[:,:,1]
         _, th = cv2.threshold(a_channel,127,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
         masked  = cv2.bitwise_and(img, img, mask = th)
 
-        grey = cv2.cvtColor(masked, cv2.COLOR_BGR2GRAY)
+        grey = cv2.cvtColor(masked, cv2.COLOR_RGB2GRAY)
         blur = cv2.GaussianBlur(grey, (5, 5), cv2.BORDER_DEFAULT)
         _, thresh = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
@@ -48,22 +49,23 @@ class diseasePredictor():
             c = max(contours, key = cv2.contourArea)
             x,y,w,h = cv2.boundingRect(c)
 
-            cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),1)
+            cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),1)
 
             ## Model works without resizing, no need for the below bs
             # if w > 255 and h > 255:
             #     img2 = cv2.resize(img2[x:x+w, y:y+h], (256,256))
             # else:
             #     img2 = cv2.resize()
+        _, img = cv2.imencode('.jpg', img)
         return img
 
 
     def predict_image(self, img):
         img = Image.open(img)
+        image = self.processImg(np.array(img))
         img = self.transform(img).unsqueeze(0)
         with torch.no_grad():
             output = self.model(img)
             _, predicted = torch.max(output, 1)
             predicted_label = class_labels[predicted.item()]
-        img = self.processImg(img)
-        return predicted_label, img
+        return predicted_label, image

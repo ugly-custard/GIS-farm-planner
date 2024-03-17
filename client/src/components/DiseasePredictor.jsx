@@ -36,7 +36,7 @@ function DiseasePredictor() {
             prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
             treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
         },
-    "Corn_(maize)_Cercospora_leaf_spot_Gray_leaf_spot": {
+    "Corn_(maize)_Cercospora_leaf_spot Gray_leaf_spot": {
         prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
         treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
     },
@@ -202,10 +202,11 @@ function DiseasePredictor() {
                 // Headers are not needed here as 'Content-Type' will be automatically set to 'multipart/form-data'
                 // and the correct boundary will be added by the browser
             });
+            
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                setResult(data.result);
+                setResult(data["result"]);
                 alert('Image uploaded successfully!');
             } else {
                 throw new Error('Failed to upload image');
@@ -289,8 +290,8 @@ function DiseasePredictor() {
             {result ? (
                 <div className="DiseasePredictor__result">
                     <h3>Result: {result}</h3>
-                    <p>Prevention: {diseases[result].prevention}</p>
-                    <p>Treatment: {diseases[result].treatment}</p>
+                    <p>Prevention: {diseases[result]?.prevention}</p>
+                    <p>Treatment: {diseases[result]?.treatment}</p>
                 </div>
             ) : (
                 <>

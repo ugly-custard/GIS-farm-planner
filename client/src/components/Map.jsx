@@ -151,10 +151,10 @@ const Map = () => {
                             <h1>Main</h1>
                             {forecast.main &&
                                 <div>
-                                    <p>Humidity: {forecast.main.humitdy}</p>
+                                    <p>Humidity: {forecast.main.humidity}</p>
                                     <p>Pressure: {forecast.main.pressure}</p>
                                     <p>Sea_level: {forecast.main.sea_level}</p>
-                                    <p>Temperature{forecast.main.temp}</p>
+                                    <p>Temperature: {forecast.main.temp}</p>
                                 </div>
                             }
                         

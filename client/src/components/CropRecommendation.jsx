@@ -185,7 +185,7 @@ function CropRecommendation() {
                 </div>
                 <div className="CropRecommendation__bottom__right">
                     {result ? (
-                        <div>
+                        <div className='YeildPredictor__result'>
                             <h1>Recommended Crop: {result}</h1>
                             <h3>Soil Type: {cropValues[result].soil}</h3>
                             <h3>Nutrient Requirements: {cropValues[result].nutrients}</h3>

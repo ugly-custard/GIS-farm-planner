@@ -288,7 +288,7 @@ function DiseasePredictor() {
                 </button>
             </div>
             {result ? (
-                <div className="DiseasePredictor__result">
+                <div className="YeildPredictor__result">
                     <h3>Result: {result}</h3>
                     <p>Prevention: {diseases[result]?.prevention}</p>
                     <p>Treatment: {diseases[result]?.treatment}</p>

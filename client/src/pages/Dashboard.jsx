@@ -8,7 +8,7 @@ import DiseasePredictor from '../components/DiseasePredictor'
 import CropRecommendation from '../components/CropRecommendation'
 import FertilizerRecommendation from '../components/FertilizerRecommendation'
 import Chatbot from '../components/Chatbot'
-import PriceIndexChart from '../components/Chart'
+import MarketTrends from '../components/MarketTrends'
 
 function Dashboard() {
 
@@ -81,7 +81,7 @@ function Dashboard() {
       case 'Fertilizer Recommendation':
         return <FertilizerRecommendation />
       case 'Market Trends':
-        return <PriceIndexChart />
+        return <MarketTrends />
       case 'Settings':
         return <h1>Settings</h1>
       default:

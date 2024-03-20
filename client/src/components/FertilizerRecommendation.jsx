@@ -91,7 +91,7 @@ function FertilizerRecommendation() {
                 </div>
                 <div className="CropRecommendation__bottom__right">
                     {result ? (
-                        <div className="CropRecommendation__result">
+                        <div className="YeildPredictor__result">
                             <h2>Recommended Fertilizer: {result}</h2>
                             <h3>Details:</h3>
                             <p>{fertilizerOptions[result]}</p>

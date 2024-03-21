@@ -44,9 +44,9 @@ def crop_recommendation():
 @app.route("/api/yield-prediction", methods=["POST"])
 def yield_prediction():
     data = request.json
-    predicted_yield = yield_predictor.predict(data)
+    prediction, message = yield_predictor.predict(data)
 
-    return jsonify({"predicted_yield": predicted_yield})
+    return jsonify({"predicted_yield": prediction, "message": message})
 
 
 @app.route("/api/fertilizer-recommendation", methods=["POST"])

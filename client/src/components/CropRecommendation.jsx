@@ -186,10 +186,10 @@ function CropRecommendation() {
                 <div className="CropRecommendation__bottom__right">
                     {result ? (
                         <div className='YeildPredictor__result'>
-                            <h1>Recommended Crop: {result}</h1>
-                            <h3>Soil Type: {cropValues[result].soil}</h3>
-                            <h3>Nutrient Requirements: {cropValues[result].nutrients}</h3>
-                            <h3>Moisture Requirements: {cropValues[result].moisture}</h3>
+                            <h1 className='yeilPredictorResultMessage'>Recommended Crop: {result}</h1>
+                            <h3 className='yeilPredictorResultMessage'>Soil Type: {cropValues[result].soil}</h3>
+                            <h3 className='yeilPredictorResultMessage'>Nutrient Requirements: {cropValues[result].nutrients}</h3>
+                            <h3 className='yeilPredictorResultMessage'>Moisture Requirements: {cropValues[result].moisture}</h3>
                         </div>
                     ) : (
                         <>

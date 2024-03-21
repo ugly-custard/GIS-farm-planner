@@ -17,6 +17,10 @@
     flex-direction: column;
 }
 
+.yeilPredictorResultMessage{
+    color: var(--color4);
+}
+
 .iot-device-status {
     display: flex;
     flex-direction: column;

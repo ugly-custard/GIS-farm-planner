@@ -12,7 +12,7 @@ class YieldPredictor:
             self.labels = json.load(f)
         self.ct = joblib.load("./yieldPredictor/colTrans.jbl.lzma")
         self.model = joblib.load("./yieldPredictor/model.jbl.lzma")
-        self.client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        # self.client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
     def predict(self, data):
         data = pd.DataFrame(data).T

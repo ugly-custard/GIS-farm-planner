@@ -36,6 +36,10 @@
             "responses": [
                 "I am a chatbot designed to assist you with your queries. You can ask me about various topics related to farming, such as crop recommendations, disease predictions, and more."
             ],
+            "queries": [
+                "Tell me about the yield prediction system",
+                "How to get disease prediction?"
+            ],
             "context_set": ""
         },
         {

@@ -292,6 +292,7 @@ function DiseasePredictor() {
                     <h3>Result: {result}</h3>
                     <p>Prevention: {diseases[result]?.prevention}</p>
                     <p>Treatment: {diseases[result]?.treatment}</p>
+                    <button onClick={() => setResult("")} className='YeildPredictor__resultButton'>Reset</button>
                 </div>
             ) : (
                 <>
@@ -311,7 +312,7 @@ function DiseasePredictor() {
                             <img src={img} alt="" className='diseasePredictorImg' />
                         )}
                     </div>
-                    <button onClick={handleSubmit} style={{ padding: "2px 14px", margin: "5px 5px", backgroundColor: "lightgreen", borderRadius: "5px" }}>submit</button>
+                    <button onClick={handleSubmit} className='YeildPredictor__resultButton'>submit</button>
                 </>
             )}
 

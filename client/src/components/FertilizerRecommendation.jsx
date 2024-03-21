@@ -92,9 +92,9 @@ function FertilizerRecommendation() {
                 <div className="CropRecommendation__bottom__right">
                     {result ? (
                         <div className="YeildPredictor__result">
-                            <h2>Recommended Fertilizer: {result}</h2>
-                            <h3>Details:</h3>
-                            <p>{fertilizerOptions[result]}</p>
+                            <h2 className='yeilPredictorResultMessage'>Recommended Fertilizer: {result}</h2>
+                            <h3 className='yeilPredictorResultMessage'>Details:</h3>
+                            <p className='yeilPredictorResultMessage'>{fertilizerOptions[result]}</p>
                         </div>
                     ) : (
                             <form onSubmit={handleSubmit}>

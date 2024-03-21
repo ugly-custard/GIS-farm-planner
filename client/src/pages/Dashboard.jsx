@@ -50,11 +50,6 @@ function Dashboard() {
       label: 'Market Trends',
       onclick: () => setActive('Market Trends'),
       active: active === 'Market Trends' // Check if the option is active
-    },
-    {
-      label: 'Settings',
-      onclick: () => setActive('Settings'),
-      active: active === 'Settings' // Check if the option is active
     }
   ]
 
@@ -82,8 +77,6 @@ function Dashboard() {
         return <FertilizerRecommendation />
       case 'Market Trends':
         return <MarketTrends />
-      case 'Settings':
-        return <h1>Settings</h1>
       default:
         return <Map />
     }

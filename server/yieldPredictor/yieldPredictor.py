@@ -16,7 +16,7 @@ class YieldPredictor:
 
     def predict(self, data):
         data = pd.DataFrame(data).T
-        datacp = data.copy()
+        # datacp = data.copy()
         data.columns = [
             "Crop",
             "Season",

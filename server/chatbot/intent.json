@@ -1,149 +1,186 @@
-{
-    "intents": [
-        {
-            "tag": "primary greetings",
-            "patterns": [
-                "Hello",
-                "Hi",
-                "Hey",
-                "Good morning",
-                "Good afternoon",
-                "Good evening",
-                "Yo",
-                "How have you been",
-                "What's up",
-                "How are you doing",
-                "It's good to see you"
-            ],
-            "responses": [
-                "Hello! How can I assist you today?",
-                "Hi there! How can I help you?",
-                "Hey! What can I do for you?",
-                "Good day! How may I assist you?"
-            ],
-            "queries": [
-                "Tell me about yourself?",
-                "Tell me about the app?"
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_about_yourself",
-            "patterns": [
-                "Tell me about yourself?",
-                "Who are you?"
-            ],
-            "responses": [
-                "I am a chatbot designed to assist you with your queries. You can ask me about various topics related to farming, such as crop recommendations, disease predictions, and more."
-            ],
-            "queries": [
-                "Tell me about the yield prediction system",
-                "How to get disease prediction?"
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_about_the_app",
-            "patterns": [
-                "Tell me about the app?",
-                "What is this app about?"
-            ],
-            "responses": [
-                "The app is designed to provide farmers with useful information and tools to improve their farming practices. It includes features such as crop recommendation systems, disease prediction systems, and yield prediction systems."
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_resolution",
-            "patterns": [
-                "Can you help me with something?",
-                "I have a question",
-                "I need information",
-                "Can you assist me?",
-                "I'm looking for help"
-            ],
-            "responses": [
-                "Of course! Feel free to ask your question, and I'll do my best to help you.",
-                "Sure, I'm here to assist you. What do you need help with?",
-                "Certainly! Let me know what information you're looking for, and I'll provide assistance."
-            ],
-            "queries": [
-                "what is the crop recommendation system?",
-                "what is the fertilizer recommendation system?",
-                "what is the disease prediction system?",
-                "what is the yield prediction system?",
-                "what are the current market trends"
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_crop_recommendation",
-            "patterns": [
-                "what is the crop recommendation system?",
-                "Tell me about the crop recommendation system",
-                "how to get crop reccomendations",
-                "tell me how to use your crop recommendation system"
-            ],
-            "responses": [
-                "The crop recommendation system provides farmers with recommendations on suitable crops to grow based on factors such as nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall."
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_fertilizer_recommendation",
-            "patterns": [
-                "what is the fertilizer recommendation system?",
-                "Tell me about the fertilizer recommendation system",
-                "how to get fertilizer reccomendations",
-                "tell me how to use your fertilizer recommendation system"
-            ],
-            "responses": [
-                "The fertilizer recommendation system helps farmers determine the optimal type and ratio of fertilizer to apply to their crops based on temperature, humidity, moisture, soiltype, croptype, nitrogen, potassium, phosphorus."
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_disease_prediction",
-            "patterns": [
-                "what is the disease prediction system?",
-                "Tell me about the disease prediction system",
-                "how to get disease prediction",
-                "tell me how to use your disease prediction system"
-            ],
-            "responses": [
-                "The disease prediction system uses deep learning models to predict crop diseases based on images you provide. This helps farmers take proactive measures to prevent crop diseases and minimize crop loss."
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "query_yield_prediction",
-            "patterns": [
-                "what is the yield prediction system?",
-                "Tell me about the yield prediction system",
-                "how to get yield prediction",
-                "tell me how to use your yield prediction system"
-            ],
-            "responses": [
-                "The yield prediction system uses data analytics and machine learning algorithms to forecast crop yields based on factors such as croptype, season, state, area , production, annual rainfall, fertilizer, pesticide. This helps farmers make informed decisions about crop planning, resource allocation, and marketing strategies."
-            ],
-            "context_set": ""
-        },
-        {
-            "tag": "goodbye",
-            "patterns": [
-                "Goodbye",
-                "See you later",
-                "Bye",
-                "Farewell",
-                "Take care"
-            ],
-            "responses": [
-                "Goodbye! If you have more questions, feel free to ask.",
-                "See you later! Don't hesitate to return if you need assistance.",
-                "Bye for now! Have a great day.",
-                "Farewell! If you need any information, just ask."
-            ],
-            "context_set": ""
-        }
-    ]
-}
+[
+  {
+    "tag": "primary_greetings",
+    "patterns": [
+      "Hello",
+      "Hi",
+      "Hey",
+      "Good morning",
+      "Good afternoon",
+      "Good evening",
+      "Yo",
+      "How have you been",
+      "What's up",
+      "How are you doing",
+      "It's good to see you"
+    ],
+    "responses": [
+      "Hello! How can I assist you today?",
+      "Hi there! How can I help you?",
+      "Hey! What can I do for you?",
+      "Good day! How may I assist you?"
+    ],
+    "queries": [
+      "Tell me about yourself?",
+      "Tell me about the app?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_about",
+    "patterns": [
+      "Tell me about yourself?",
+      "Who are you?",
+      "Tell me about the app?",
+      "What is this app about?"
+    ],
+    "responses": [
+      "I am a chatbot designed to assist you with your queries. You can ask me about various topics that we cover on our app, such as crop recommendations, disease predictions, and more.",
+      "The app is designed to provide farmers with useful information and tools to improve their farming practices. It includes features such as crop and fertilizer recommendation systems, disease prediction systems, yield prediction systems, and market trends analysis."
+    ],
+    "queries": [
+      "What is the disease prediction system?",
+      "What is the yield prediction system?",
+      "What are the current market trends?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_resolution",
+    "patterns": [
+      "Can you help me with something?",
+      "I have a question",
+      "I need information",
+      "Can you assist me?",
+      "I'm looking for help"
+    ],
+    "responses": [
+      "Of course! Feel free to ask your question, and I'll do my best to help you.",
+      "Sure, I'm here to assist you. What do you need help with?",
+      "Certainly! Let me know what information you're looking for, and I'll provide assistance."
+    ],
+    "queries": [
+      "What is the crop recommendation system?",
+      "What is the disease prediction system?",
+      "What is the yield prediction system?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_crop_recommendation",
+    "patterns": [
+      "What is the crop recommendation system?",
+      "How to get crop recommendations?",
+      "Tell me how to use your crop recommendation system?"
+    ],
+    "responses": [
+      "The crop recommendation system provides farmers with recommendations on suitable crops to grow based on factors such as nitrogen, phosphorus, potassium, temperature, humidity, pH, and rainfall."
+    ],
+    "queries": [
+      "How to get fertilizer recommendations?",
+      "What data sources are used for crop recommendation?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_fertilizer_recommendation",
+    "patterns": [
+      "What is the fertilizer recommendation system?",
+      "How to get fertilizer recommendations?",
+      "Tell me how to use your fertilizer recommendation system?"
+    ],
+    "responses": [
+      "The fertilizer recommendation system helps farmers determine the optimal type and ratio of fertilizer to apply to their crops based on factors such as temperature, humidity, moisture, soil type, crop type, nitrogen, potassium, and phosphorus."
+    ],
+    "queries": [
+      "How to get yield prediction?",
+      "Does the system consider organic vs. synthetic fertilizers?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_disease_prediction",
+    "patterns": [
+      "What is the disease prediction system?",
+      "How to get disease identification?",
+      "Tell me how to use your disease identification system?"
+    ],
+    "responses": [
+      "The disease prediction system uses deep learning models to predict crop diseases based on images you provide. This helps farmers take proactive measures to prevent crop diseases and minimize crop loss. You take a photo with your phone's camera through the app, or upload an already clicked photo and submit it, and the model would detect the disease the plant has."
+    ],
+    "queries": [
+      "What is the crop recommendation system?",
+      "What types of diseases can the system predict?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_yield_prediction",
+    "patterns": [
+      "What is the yield prediction system?",
+      "How to get yield prediction?",
+      "Tell me how to use your yield prediction system?"
+    ],
+    "responses": [
+      "The yield prediction system uses data analytics and machine learning algorithms to forecast crop yields based on factors such as crop type, season, geographical location, production, annual rainfall, fertilizer, and pesticide use. This helps farmers make informed decisions about crop planning, resource allocation, and marketing strategies."
+    ],
+    "queries": [
+      "How does the market trends feature work?",
+      "What types of crops does the yield prediction system support?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_verification_feedback",
+    "patterns": [
+      "What is the verification feedback system?",
+      "How does verification contribute to accuracy?",
+      "Tell me about model validation?",
+      "How does the verification process work?"
+    ],
+    "responses": [
+      "Our verification feedback system involves testing in collaboration with greenhouses to validate the accuracy and effectiveness of our prediction models.",
+      "Verification feedback includes comparing model predictions with actual outcomes to assess the performance and refine the algorithms for better accuracy."
+    ],
+    "queries": [
+      "How can users provide feedback for verification?",
+      "What measures are taken to ensure data integrity in the verification process?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "query_market_trends",
+    "patterns": [
+      "How does the market trends feature work?",
+      "What factors influence market trends?",
+      "Tell me about agricultural market analysis.",
+      "How frequently is the market data updated?"
+    ],
+    "responses": [
+      "Our market trends feature gathers data from data.gov.in's APIs to provide users with current market prices for agricultural commodities, helping them make informed decisions.",
+      "Market trends analysis involves monitoring supply and demand dynamics, weather patterns, economic indicators, and government policies to forecast price trends and market conditions."
+    ],
+    "queries": [
+      "What is the verification feedback system?",
+      "How does the app use market trends data to assist farmers?"
+    ],
+    "context_set": ""
+  },
+  {
+    "tag": "goodbye",
+    "patterns": [
+      "Goodbye",
+      "See you later",
+      "Bye",
+      "Farewell",
+      "Take care"
+    ],
+    "responses": [
+      "Goodbye! If you have more questions, feel free to ask.",
+      "See you later! Don't hesitate to return if you need assistance.",
+      "Bye for now! Have a great day.",
+      "Farewell! If you need any information, just ask."
+    ],
+    "context_set": ""
+  }
+]

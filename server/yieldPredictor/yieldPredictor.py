@@ -49,4 +49,7 @@ class YieldPredictor:
     continually adjust practices based on real-time data. These strategies, coupled with \
     staying informed about advancements, will maximize yield and enhance agricultural productivity.\
     """
+
+
         return prediction, message # response.choices[0].message.content
+

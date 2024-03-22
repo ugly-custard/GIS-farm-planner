@@ -66,6 +66,11 @@ class diseasePredictor():
         img = self.transform(img).unsqueeze(0)
         with torch.no_grad():
             output = self.model(img)
-            _, predicted = torch.max(output, 1)
-            predicted_label = class_labels[predicted.item()]
+            softmax = torch.nn.Softmax(dim=1)
+            probabilities = softmax(output)
+            confidence, predicted = torch.max(probabilities, 1)
+            if confidence.item() < 0.8:  
+             predicted_label = "Error: Low confidence"
+            else:
+                predicted_label = class_labels[predicted.item()]
         return predicted_label, image

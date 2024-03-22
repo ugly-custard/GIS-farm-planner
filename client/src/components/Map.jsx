@@ -130,6 +130,7 @@ const Map = () => {
         setFarms(data)
     }
 
+    var locationName = localStorage.getItem('location');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -266,7 +267,7 @@ const Map = () => {
                             <Marker position={coordinates}>
                                 <Popup>
                                     <h2></h2>
-                                    <p>You're here</p>
+                                    <p>You're at {locationName}</p>
 
                                 </Popup>
                             </Marker>

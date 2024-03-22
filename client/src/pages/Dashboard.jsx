@@ -59,6 +59,7 @@ function Dashboard() {
         .then(response => response.json())
         .then(data => {
           setLocation(data.locality)
+          localStorage.setItem('user.locationName', location)
         })
     })
   };

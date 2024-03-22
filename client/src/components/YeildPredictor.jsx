@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/YeildPredictor.css"
 import img from "../assets/undraw_flowers_vx06 1.svg"
 import Connect from './Connect';
@@ -55,6 +55,12 @@ function YeildPredictor() {
 
     let yeild =  parameters.production /parameters.area
 
+    let percentValue = (yeild / result) * 100
+
+    useEffect(() => {
+        console.log(percentValue)
+    }, [result])
+
 
     return (
         <div className='YeildPredictor'>
@@ -63,13 +69,24 @@ function YeildPredictor() {
                 <img src={img} alt="" />
                 {result ? (
                     <div className='YeildPredictor__result'>
-
-                        <h2 className='yeilPredictorResultHeader'> Your Yeild:</h2>
-                        <h2 className='yeilPredictorResultHeader'> {yeild.toFixed(2)} Metric Tonnes / hectres</h2>
                         
                         <h2 className='yeilPredictorResultHeader'> Predicted Yeild:</h2>
                         
                         <h2 className='yeilPredictorResultHeader'> {result.toFixed(2)} Metric Tonnes / hectres</h2>
+
+                    
+                        <p className='Percentage__value'>{percentValue.toFixed(0)}% yield</p>
+                        {percentValue < 100 && (
+                            <>
+                            <div className="progress-bar">
+                                <div className="progress-bar__fill" style={{width: `${percentValue}%`}}></div>
+                            </div>
+                            <div>
+                                <p className='descale'>You are below the predicted yeild</p>
+                                <p className='descale'>Improve your results using our Crop Recommendation, Fertilizer Recommendation and Disease Prediction Models</p>
+                            </div>
+                            </>
+                        )}
 
                         {/* <p className='yeilPredictorResultMessage'>Message: {message}</p> */}
                         <button onClick={() => setResult(null)} className='YeildPredictor__resultButton'>Reset</button>
@@ -120,7 +137,7 @@ function YeildPredictor() {
                         <label htmlFor="pesticide" className="yieldPrediction__form__label">Pesticide:</label>
                         <input onChange={onChange} value={parameters.pesticide} type="text" id="pesticide" name="pesticide" className="yeildPrediction__Form__Select" placeholder='in KG'/>
 
-                        <button type='submit' >Submit</button>
+                        <button type='submit'>Submit</button>
                     </form>
                 </div>
                 )}

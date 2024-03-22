@@ -54,11 +54,12 @@
 .chat_bot_close{
     margin: 5px;
     position: absolute;
+    font-size: 24px;
     top: 0;
     right: 0;
-    width: 20px;
-    height: 20px;
-    background-color: red;
+    width: 30px;
+    height: 30px;
+    background-color: var(--color3);
     color: white;
     border-radius: 100%;
     z-index: 1000;

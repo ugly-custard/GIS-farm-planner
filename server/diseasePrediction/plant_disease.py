@@ -69,7 +69,7 @@ class diseasePredictor():
             softmax = torch.nn.Softmax(dim=1)
             probabilities = softmax(output)
             confidence, predicted = torch.max(probabilities, 1)
-            if confidence.item() < 0.8:  
+            if confidence.item() < 0.6:  
              predicted_label = "Error: Low confidence"
             else:
                 predicted_label = class_labels[predicted.item()]

@@ -74,10 +74,10 @@ function YeildPredictor() {
                         
                         <h2 className='yeilPredictorResultHeader'> {result.toFixed(2)} Metric Tonnes / hectres</h2>
 
-                    
-                        <p className='Percentage__value'>{percentValue.toFixed(0)}% yield</p>
+
                         {percentValue < 100 && (
                             <>
+                                <p className='Percentage__value'>{percentValue.toFixed(0)}% yield</p>
                             <div className="progress-bar">
                                 <div className="progress-bar__fill" style={{width: `${percentValue}%`}}></div>
                             </div>

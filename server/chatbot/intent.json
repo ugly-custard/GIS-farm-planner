@@ -1,4 +1,6 @@
-[
+{
+  "intents":
+  [
   {
     "tag": "primary_greetings",
     "patterns": [
@@ -184,3 +186,4 @@
     "context_set": ""
   }
 ]
+}

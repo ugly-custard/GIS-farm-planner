@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import "../styles/ChatBot.css"
 
 function Chatbot() {
@@ -7,6 +8,12 @@ function Chatbot() {
     const [chats, setChats] = useState([]);
     const [queries, setQueries] = useState([]);
     const [buttonChat, setButtonChat] = useState("")
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleClick()
+        }
+    }
 
     const handleClick = async () => {
         try {
@@ -24,6 +31,8 @@ function Chatbot() {
             setQueries(res['queries'])
             new_chat.push(res['response'])
             setChats(new_chat)
+            setChat('')
+
             console.log(res)
         } catch (err) {
             console.log(err);
@@ -42,7 +51,6 @@ function Chatbot() {
     const resButtonClick = async (e) => {
         setChat(e.target.value)
         setButtonChat(e.target.value)
-
     }
 
     useEffect(() => {
@@ -54,7 +62,7 @@ function Chatbot() {
     return (
         <div>
 
-            <button onClick={openModal} className="chat_bot">Chat Bot</button>
+            <button onClick={openModal} className="chat_bot"><SmartToyIcon /></button>
             {isModalOpen && (
                 <div className="chat_bot_modal">
                     <div className="chat_bot_modal_content">
@@ -65,18 +73,18 @@ function Chatbot() {
                             {/* Display chats for both users and bots */}
                             {chats && chats.map((message, i) => {
                                 return (
-                                    <div key={i} style={{ backgroundColor: (i & 1) ? "lightblue" : "lightgreen", borderRadius: "5px", padding: "0.1rem 0.15rem", margin: "0.1rem" }}>
+                                    <div key={i} className={i & 1 ? "LightGreen" : "LightBlue"}>
                                         <p>{message}</p>
                                     </div>
                                 )
                             })}
                         </div>
-                        <div>
+                        <div className='queriesz__main'>
                             {
                                 queries && queries.map((q, i) => {
 
                                     return (
-                                        <button key={i} value={q} onClick={resButtonClick} >
+                                        <button key={i} value={q} onClick={resButtonClick} className='queries__button'>
                                             {q}
                                         </button>
                                     )
@@ -84,7 +92,7 @@ function Chatbot() {
                             }
                         </div>
                         <div className="chat_bot_input">
-                            <input type="text" onChange={(e) => setChat(e.target.value)} className="chat_bot_chat_input" />
+                            <input type="text" onChange={(e) => setChat(e.target.value)} onKeyDown={handleKeyDown} value={chat} className="chat_bot_chat_input" />
                             <button onClick={handleClick} className="chat_bot_submit_button">Submit</button>
                         </div>
                     </div>

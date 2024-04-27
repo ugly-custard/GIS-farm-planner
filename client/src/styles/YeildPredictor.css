@@ -17,6 +17,44 @@
     flex-direction: column;
 }
 
+.yeilPredictorResultMessage{
+    color: var(--color4);
+}
+
+.progress-bar__fill{
+    background-color: var(--color3);
+    height: 100%;
+    border: 5px solid var(--color3);
+}
+
+.progress-bar{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: transparent;
+    height: 40px;
+    border: 5px solid var(--color3);
+    border-radius: 25px;
+    width: 400px;
+    margin: 20px 0;
+    margin-top: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.Percentage__value{
+    color: var(--color4);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.descale{
+    font-size: 18px;
+    color: var(--color4);
+    font-weight: 600;
+    margin-top: 0;
+}
 .iot-device-status {
     display: flex;
     flex-direction: column;
@@ -130,6 +168,7 @@
 }
 
 .yeilPredictorResultHeader{
+    color: var(--color4);
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 20px;

@@ -36,11 +36,10 @@ function DiseasePredictor() {
             prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
             treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
         },
-    "Corn_(maize)_Cercospora_leaf_spot Gray_leaf_spot": {
-        prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
-        treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
-    },
-    
+        "Corn_(maize)_Cercospora_leaf_spot Gray_leaf_spot": {
+            prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
+            treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
+        },
         "Corn_(maize)_Common_rust":{
             prevention: "Prevention: \n\n1. Plant resistant varieties when available.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground.\n4. Rake and destroy infected leaves to reduce the number of fungal spores available to start the disease cycle over again next spring.",
             treatment: "Treatment: \n\n1. Apply a fungicide to protect new growth as it emerges and throughout the growing season.\n2. Prune trees to allow good air circulation.\n3. Remove mummified fruit from trees and the ground."
@@ -170,7 +169,6 @@ function DiseasePredictor() {
         if (file && file.type.startsWith('image/')) {
             setImage(URL.createObjectURL(file));
             setSelectedFile(event.target.files[0])
-            // console.log(event.target.files[0])
         }
     };
 
@@ -292,6 +290,7 @@ function DiseasePredictor() {
                     <h3>Result: {result}</h3>
                     <p>Prevention: {diseases[result]?.prevention}</p>
                     <p>Treatment: {diseases[result]?.treatment}</p>
+                    <button onClick={() => setResult("")} className='YeildPredictor__resultButton'>Reset</button>
                 </div>
             ) : (
                 <>
@@ -311,7 +310,7 @@ function DiseasePredictor() {
                             <img src={img} alt="" className='diseasePredictorImg' />
                         )}
                     </div>
-                    <button onClick={handleSubmit} style={{ padding: "2px 14px", margin: "5px 5px", backgroundColor: "lightgreen", borderRadius: "5px" }}>submit</button>
+                    <button onClick={handleSubmit} className='YeildPredictor__resultButton'>submit</button>
                 </>
             )}
 

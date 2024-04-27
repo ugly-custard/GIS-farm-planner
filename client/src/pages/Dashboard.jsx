@@ -50,11 +50,6 @@ function Dashboard() {
       label: 'Market Trends',
       onclick: () => setActive('Market Trends'),
       active: active === 'Market Trends' // Check if the option is active
-    },
-    {
-      label: 'Settings',
-      onclick: () => setActive('Settings'),
-      active: active === 'Settings' // Check if the option is active
     }
   ]
 
@@ -64,6 +59,7 @@ function Dashboard() {
         .then(response => response.json())
         .then(data => {
           setLocation(data.locality)
+          localStorage.setItem('user.locationName', location)
         })
     })
   };
@@ -82,8 +78,6 @@ function Dashboard() {
         return <FertilizerRecommendation />
       case 'Market Trends':
         return <MarketTrends />
-      case 'Settings':
-        return <h1>Settings</h1>
       default:
         return <Map />
     }

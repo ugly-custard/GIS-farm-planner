@@ -25,7 +25,7 @@ const GoogleTranslateWidget = () => {
     // Use a timeout to wait for a short duration after the script has loaded
     const timeoutId = setTimeout(() => {
       onLoad();
-    }, 1000);
+    }, 3000);
 
     // onLoad()
 

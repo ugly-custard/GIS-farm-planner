@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/YeildPredictor.css"
 import img from "../assets/undraw_flowers_vx06 1.svg"
 import Connect from './Connect';
+import axios from 'axios';
 
 function YeildPredictor() {
 
@@ -10,10 +11,12 @@ function YeildPredictor() {
     const stateOptions = { "Assam": 0, "Karnataka": 1, "Kerala": 2, "Meghalaya": 3, "West Bengal": 4, "Puducherry": 5, "Goa": 6, "Andhra Pradesh": 7, "Tamil Nadu": 8, "Odisha": 9, "Bihar": 10, "Gujarat": 11, "Madhya Pradesh": 12, "Maharashtra": 13, "Mizoram": 14, "Punjab": 15, "Uttar Pradesh": 16, "Haryana": 17, "Himachal Pradesh": 18, "Tripura": 19, "Nagaland": 20, "Chhattisgarh": 21, "Uttarakhand": 22, "Jharkhand": 23, "Delhi": 24, "Manipur": 25, "Jammu and Kashmir": 26, "Telangana": 27, "Arunachal Pradesh": 28, "Sikkim": 29 }
 
     const [result, setResult] = useState(null)
+    const [message, setMessage] = useState('')
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const body = []
+        const body = [];
         Object.keys(parameters).forEach((key, i) => {
             let value = parameters[key];
             if (i > 2) {
@@ -21,17 +24,17 @@ function YeildPredictor() {
             }
             body.push(value);
         });
-        console.log(body)
-        const response = await fetch('http://localhost:8080/api/yield-prediction', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        });
-        const res = await response.json();
-        console.log(res)
-        setResult(res["predicted_yield"])
+        console.log(body);
+        try {
+            const response = await axios.post('http://localhost:8080/api/yield-prediction', body);
+            const res = response.data;
+            console.log(res);
+            setResult(res["predicted_yield"]);
+            setMessage(res["message"]);
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const [parameters, setParameters] = useState({
@@ -52,6 +55,12 @@ function YeildPredictor() {
 
     let yeild =  parameters.production /parameters.area
 
+    let percentValue = (yeild / result) * 100
+
+    useEffect(() => {
+        console.log(percentValue)
+    }, [result])
+
 
     return (
         <div className='YeildPredictor'>
@@ -60,13 +69,26 @@ function YeildPredictor() {
                 <img src={img} alt="" />
                 {result ? (
                     <div className='YeildPredictor__result'>
-
-                        <h2 className='yeilPredictorResultHeader'> Your Yeild:</h2>
-                        <h2 className='yeilPredictorResultHeader'> {yeild.toFixed(2)}</h2>
                         
                         <h2 className='yeilPredictorResultHeader'> Predicted Yeild:</h2>
                         
                         <h2 className='yeilPredictorResultHeader'> {result.toFixed(2)} Metric Tonnes / hectres</h2>
+
+
+                        {percentValue < 100 && (
+                            <>
+                                <p className='Percentage__value'>{percentValue.toFixed(0)}% yield</p>
+                            <div className="progress-bar">
+                                <div className="progress-bar__fill" style={{width: `${percentValue}%`}}></div>
+                            </div>
+                            <div>
+                                <p className='descale'>You are below the predicted yeild</p>
+                                <p className='descale'>Improve your results using our Crop Recommendation, Fertilizer Recommendation and Disease Prediction Models</p>
+                            </div>
+                            </>
+                        )}
+
+                        {/* <p className='yeilPredictorResultMessage'>Message: {message}</p> */}
                         <button onClick={() => setResult(null)} className='YeildPredictor__resultButton'>Reset</button>
                     </div>
                 ):(
@@ -115,7 +137,7 @@ function YeildPredictor() {
                         <label htmlFor="pesticide" className="yieldPrediction__form__label">Pesticide:</label>
                         <input onChange={onChange} value={parameters.pesticide} type="text" id="pesticide" name="pesticide" className="yeildPrediction__Form__Select" placeholder='in KG'/>
 
-                        <button type='submit' >Submit</button>
+                        <button type='submit'>Submit</button>
                     </form>
                 </div>
                 )}
